@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import animation from '@/styles/animation.module.css';
 import moment from 'moment';
 import LazyLoad from 'react-lazyload';
-import useStyles from './landingPageStyles';
+import useStyles from '@/components/landingPageStyles';
 import Link from 'next/link';
 import PCMLOGO from '@/public/Images/PCMLOGO.png';
 import Image from 'next/image';
@@ -40,7 +40,7 @@ export default function LandingPage () {
 
           <div className={classes.secondSection} >
               <div className={classes.h6Box} >
-                  <Typography variant="h6" >"The PCM Journey is for those who wants to go through a training that will give them a significant result in the end. The PCM Journey will give you a change of mindset and a confident spirit."</Typography>
+                  <Typography variant="h6" >&quot;The PCM Journey is for those who wants to go through a training that will give them a significant result in the end. The PCM Journey will give you a change of mindset and a confident spirit.&quot;</Typography>
                   <br/>
                   <br/>
                   <br/>
@@ -115,7 +115,7 @@ export default function LandingPage () {
                   <Typography variant="subtitle1" >Create a Positive Environment,  Celebrate Your Small Wins and Surround Yourself With Motivated People. There are people who make things happen, there are people who watch things happen, and there are people who wonder what happened. To be successful, you need to be the person who makes things happen.</Typography>
                   </div>
                   <div className={classes.subtitleItem}>
-                  <Typography variant="subtitle1" >There are no secrets to success. It is the result of preparation, hard work, and learning from failure. If you really want to do something, you'll find a way. If you don't, you'll find an excuse. In order to succeed,  first, believe that you can  succeed.</Typography>
+                  <Typography variant="subtitle1" >There are no secrets to success. It is the result of preparation, hard work, and learning from failure. If you really want to do something, youll find a way. If you dont, youll find an excuse. In order to succeed,  first, believe that you can  succeed.</Typography>
                   </div>
               </div>
           </div>
