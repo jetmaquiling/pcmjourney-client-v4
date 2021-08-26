@@ -25,7 +25,7 @@ export default function Dashboard () {
         if(!ctx.getCookie('isLoggedIn')){
             router.push("/pcm/login")
         }
-    }, [])
+    }, [ctx,router])
 
     return (
             <div  ref={myRef} >
