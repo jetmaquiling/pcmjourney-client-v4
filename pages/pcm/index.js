@@ -8,7 +8,7 @@ import useStyles from '@/useStyles/landingPageStyles';
 import Link from 'next/link';
 import PCMLOGO from '@/public/Images/PCMLOGO.png';
 import Image from 'next/image';
-import Support from './support/index';
+import Support from '../support/index';
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
 
@@ -22,17 +22,17 @@ export default function LandingPage () {
            <Header1/>
           <div className={classes.firstSection} >
               <div className={classes.title} >
-                  <Typography variant="h1" className={[classes.h1 , animation.animateTitle1].join(' ')} >PHBWORX</Typography>
-                  <Typography variant="h1" className={[classes.h1 , animation.animateTitle2].join(' ')} >EBuddy</Typography>
-                  <Link href='/pcm'><Typography variant="h1" className={[classes.h1 , animation.animateTitle3].join(' ')} >PCMJourney</Typography></Link>
+                  <Typography variant="h1" className={[classes.h1 , animation.animateTitle1].join(' ')} >THE</Typography>
+                  <Typography variant="h1" className={[classes.h1 , animation.animateTitle2].join(' ')} >PCM</Typography>
+                  <Typography variant="h1" className={[classes.h1 , animation.animateTitle3].join(' ')} >JOURNEY</Typography>
               </div>
               <div className={classes.buttonBox} >
-                  <Link href='/signup'>
+                  <Link href='/pcm/signup'>
                       <Button variant="contained" color="primary" className={classes.appButton} >
                            <Typography variant="body1">SIGN UP</Typography>
                       </Button>
                   </Link>
-                  <Link href='/login'>
+                  <Link href='/pcm/login'>
                       <Button variant="outlined" color="primary" className={classes.appButton} >
                           <Typography variant="body1">LOG IN</Typography>
                       </Button>
