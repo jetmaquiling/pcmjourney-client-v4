@@ -45,7 +45,7 @@ export default function LandingPage () {
               </div>     
           </div>   
         
-          <div className={classes.h5} >
+            <div className={classes.h5} >
                   <LazyLoad height={50} once >
                       <Image src={PCMLOGO} className={classes.logoImage} />
                   </LazyLoad>
