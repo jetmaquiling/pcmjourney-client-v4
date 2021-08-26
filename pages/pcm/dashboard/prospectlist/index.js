@@ -97,6 +97,7 @@ export default function ProspectList() {
       
           }
           persist(ctx.getCookie('token'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [success])
 
     async function addProspect () {

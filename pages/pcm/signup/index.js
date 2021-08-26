@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React, {useReducer} from 'react'
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';

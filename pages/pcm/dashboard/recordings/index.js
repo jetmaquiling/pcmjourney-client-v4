@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React, {useEffect, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';

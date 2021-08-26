@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable @next/next/link-passhref */
+/* eslint-disable react/jsx-key */
 import React from 'react';
 import useStyles from '@/useStyles/blogStyles';
 import Typography from '@material-ui/core/Typography';

@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/link-passhref */
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -14,6 +16,8 @@ import Footer1 from '@/components/footers/footer1';
 
 const moment7 = moment();
 const moment8 = moment().add('90','days');
+
+
 export default function LandingPage () {
   const classes = useStyles();
 
@@ -25,18 +29,6 @@ export default function LandingPage () {
                   <Typography variant="h1" className={[classes.h1 , animation.animateTitle1].join(' ')} >PHBWORX</Typography>
                   <Typography variant="h1" className={[classes.h1 , animation.animateTitle2].join(' ')} >EBuddy</Typography>
                   <Link href='/pcm'><Typography variant="h1" className={[classes.h1 , animation.animateTitle3].join(' ')} >PCMJourney</Typography></Link>
-              </div>
-              <div className={classes.buttonBox} >
-                  <Link href='/signup'>
-                      <Button variant="contained" color="primary" className={classes.appButton} >
-                           <Typography variant="body1">SIGN UP</Typography>
-                      </Button>
-                  </Link>
-                  <Link href='/login'>
-                      <Button variant="outlined" color="primary" className={classes.appButton} >
-                          <Typography variant="body1">LOG IN</Typography>
-                      </Button>
-                  </Link>
               </div>
           </div>
 

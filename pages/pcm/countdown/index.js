@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React,{useContext} from 'react';
 import useStyles from '@/useStyles/countdownStyles';
 import Typography from '@material-ui/core/Typography';
@@ -50,7 +51,7 @@ export default function Countdown() {
             const seconds = 0
             setState({ days, hours, minutes, seconds });
         }
-    }, [])
+    },[ctx.events.PCMdate])
 
     const copyCodeToClipboard = () => {
         navigator.clipboard.writeText("COPY TEXT HERE")

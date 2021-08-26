@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import React, {useEffect} from 'react';
 import useStyles from '@/useStyles/blogPageStyles';
 import IconButton from '@material-ui/core/IconButton';
@@ -55,7 +58,7 @@ export default function BlogPage() {
         }
         
         
-    }, [liked])
+    }, [liked,blog.likes,id])
 
     useEffect(() => {
         async function getBlog() { 
@@ -67,12 +70,11 @@ export default function BlogPage() {
                 thumbnail: data.clipboard.formats.thumbnail.url,
                 urltitle : url
             })
-            console.log(blog)
             
         }
         getBlog()
 
-    }, [])
+    }, [id])
 
 
 

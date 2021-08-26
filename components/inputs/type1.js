@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-export default function Type1({ label='Undefined', field='Undefined', type="none", autoComplete="none", dispatch ,rows=null }) {
+export default function Type1({ label='Undefined', field='Undefined', type="none", autoComplete="none", dispatch , }) {
     const classes = useStyles();
     
     return (
@@ -35,7 +35,7 @@ export default function Type1({ label='Undefined', field='Undefined', type="none
                         inputProps={{
                             autoComplete: {autoComplete},
                         }}
-                        rows={rows}
+                        
                         fullWidth
                         multiline
                         endAdornment={

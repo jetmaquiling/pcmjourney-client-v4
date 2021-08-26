@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React, {useRouter} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -44,7 +45,16 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  appButton1:{
+    display: 'inline-block',
+    margin: "0px 10px 0px 10px" ,
+    [theme.breakpoints.down('xs')]: {
+      display:'none',
+      
+    },
+  },
   appButton:{
+    color: '#000',
     display: 'inline-block',
     margin: "0px 10px 0px 10px" ,
     [theme.breakpoints.down('xs')]: {
@@ -169,27 +179,27 @@ export default function Header1 (){
 
             <div   >
               <Link href='/blogs'>
-                  <Button color={"#000"} className={classes.appButton} >
+                  <Button  className={classes.appButton} >
                       Blogs
                   </Button>
               </Link>
               <Link href='/pcm/countdown'>
-                  <Button color={"#000"} className={classes.appButton} >
+                  <Button  className={classes.appButton} >
                       About
                   </Button>
               </Link>
               <Link href='/support'>
-                  <Button color={"#000"} className={classes.appButton}>
+                  <Button className={classes.appButton}>
                       Contact
                   </Button>
               </Link>
               <Link href='/pcm/login'>
-                  <Button color={"#000"} className={classes.appButton} >
+                  <Button  className={classes.appButton} >
                       Log In
                   </Button>
               </Link>
               <Link href='/pcm/signup'>
-                  <Button variant="contained" color="primary" className={classes.appButton}>
+                  <Button variant="contained" color="primary" className={classes.appButton1}>
                       Sign Up
                   </Button>
               </Link>
