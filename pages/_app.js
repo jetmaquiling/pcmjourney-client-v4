@@ -11,26 +11,40 @@ import Head from "next/head";
 
 
 function MyApp({ Component, pageProps }) {
+  React.useEffect(() => {
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+        OneSignal.init({
+            appId: "7f1dfe71-119f-4647-be29-327a2a4dfe9f",
+            safari_web_id: "web.onesignal.auto.50d89199-747f-4818-96ca-50d4208129fc",
+            notifyButton: {
+                enable: true,
+            },
+
+            allowLocalhostAsSecureOrigin: true,
+        });
+    });
+
+    return () => {
+        window.OneSignal = undefined;
+    };
+    }, []); // <-- run this effect once on mount
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <AuthContextProvider>
           <ThemeProvider theme={theme}>
               <Head>
+                
                   <script src="//widget.manychat.com/100398772332381.js" defer="defer"></script>
                   <script src="https://mccdn.me/assets/js/widget.js" defer="defer"></script>
                   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
                   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-                  <script>
-                    window.OneSignal = window.OneSignal || [];
-                    OneSignal.push(function() {
-                      OneSignal.init({appId: "8e6d470b-2a2a-409c-92a8-844e4c020e14",safari_web_id: "web.onesignal.auto.50fac9c2-9f7f-49e4-88a1-4637f1759b35",
-                      notifyButton: {
-                          enable: true,
-                        },
-                      })
-                    });
-                  </script>
+                  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+                  <script
+                    src="https://cdn.onesignal.com/sdks/OneSignalSDK.js"
+                    async=""
+                  ></script>
                   
                   <link rel="apple-touch-icon" sizes="180x180" href="/Images/apple-touch-icon.png"/>
                   <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon-32x32.png"/>
