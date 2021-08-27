@@ -19,8 +19,18 @@ function MyApp({ Component, pageProps }) {
               <Head>
                   <script src="//widget.manychat.com/100398772332381.js" defer="defer"></script>
                   <script src="https://mccdn.me/assets/js/widget.js" defer="defer"></script>
-
-
+                  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+                  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+                  <script>
+                    window.OneSignal = window.OneSignal || [];
+                    OneSignal.push(function() {
+                      OneSignal.init({appId: "8e6d470b-2a2a-409c-92a8-844e4c020e14",safari_web_id: "web.onesignal.auto.50fac9c2-9f7f-49e4-88a1-4637f1759b35",
+                      notifyButton: {
+                          enable: true,
+                        },
+                      })
+                    });
+                  </script>
                   
                   <link rel="apple-touch-icon" sizes="180x180" href="/Images/apple-touch-icon.png"/>
                   <link rel="icon" type="image/png" sizes="32x32" href="/Images/favicon-32x32.png"/>
