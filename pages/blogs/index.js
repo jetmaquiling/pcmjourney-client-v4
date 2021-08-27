@@ -20,6 +20,8 @@ import AlbumIcon from '@material-ui/icons/Album';
 import config from '@/config/configuration.json';
 import axios from 'axios';
 import LazyLoad from 'react-lazyload';
+import Head from 'next/head'
+
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
@@ -45,7 +47,9 @@ export default function Blog() {
   
   return (
     <div  container className={classes.root}  ref={myRef}>
-
+        <Head>  
+            <title>Blogs</title>
+        </Head>
         <div  item md={12} style={{padding: '30px 0px' , width: '100%' ,  display:'flex' , justifyContent: 'center', textAlign: 'center'}}>
 
         <Typography variant='h2' color='primary' className={classes.heading} ><b>Every Journey Has A Story</b></Typography>

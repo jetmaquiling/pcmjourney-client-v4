@@ -16,6 +16,9 @@ import Click1 from '@/components/buttons/click1';
 import TermsAndPolicy from '@/components/caveats/termsAndPolicy';
 import { PoliciesComponent } from '@/components/dialogs/policies';
 import {AuthContext} from '@/context/context';
+import Head from 'next/head'
+import { SuccessModalComponent } from '@/components/dialogs/success';
+
 
 let new_date1 = moment();
 let new_date2 = moment();
@@ -37,7 +40,7 @@ const initialState = {
     ProfilePicture: '',
     ProfilePicturePreview: '',
     PersonalSignature: null ,
-    Trained: 'false',
+    Trained: 'untrained',
     Programs: '',
     country: "",  
     address: '' , 
@@ -88,6 +91,11 @@ export default function Signup () {
    
     return (
         <div className={classes.root} >
+            <Head>
+                <title>Get Started with PCM Journey</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <SuccessModalComponent/>
             <PoliciesComponent/>
             <div className={classes.backBox} >
                 <Link href='/pcm'>
@@ -163,8 +171,7 @@ export default function Signup () {
                 <Type6 label="Password" type="date" field="Password" dispatch={dispatch}  />
                 <Type6 label="Confirm Password" type="date" field="PasswordConfirm" dispatch={dispatch}  />
                 <TermsAndPolicy Agreement={state.Agreement} dispatch={dispatch} />
-
-                <Click1 label="Proceed" action={()=> ctx.signUp(state)} />
+                <Click1 label="Proceed" action={()=> ctx.signUp(state) } />
 
         
             {/* End Of FormBox */}

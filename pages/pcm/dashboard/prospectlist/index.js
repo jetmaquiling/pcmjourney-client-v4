@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React, {useEffect, useContext} from 'react';
 import Grid from '@material-ui/core/Grid';
 import {AuthContext} from '@/context/context';
@@ -13,24 +14,32 @@ import Button from '@material-ui/core/Button';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import AddIcon from '@material-ui/icons/Add';
 
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Link from "next/link";
+import IconButton from '@material-ui/core/IconButton';
+
 import config from '@/config/configuration.json';
 import axios from 'axios';
 
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-
+import Head from 'next/head'
 import moment from 'moment';
+import { useRouter } from 'next/router'
 
+import Header1 from '@/components/headers/header1';
+import Footer1 from '@/components/footers/footer1';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        margin: '80px 0px',
+      margin: '20px 0px',
+      minHeight: '100vh',
       width: '100%',
       display:'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
+      justifyContent: 'flex-start',
+      alignItems: 'center', 
     },
 
     inputBox:{
@@ -67,8 +76,24 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between'
     },
     contentButton:{
+        
         marginTop: '20px',
         textAlign: 'center'
+    },
+    backBox:{
+        width: '550px',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+        },   
+    },
+    back:{
+        fontSize: '50px',
+        color: theme.palette.primary.main,
+        [theme.breakpoints.down('xs')]: {
+            fontSize:'30px'
+        },    
     },
     
  }));
@@ -76,11 +101,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProspectList() {
     const classes = useStyles();
+    const router = useRouter()
     const ctx = useContext(AuthContext);
     const [success, setSuccess] = React.useState(true)
-    const [form, setForm] = React.useState({name: '', address:"", contact:"", facebookname:''})
+    const [form, setForm] = React.useState({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: ''});
+
+   
 
     useEffect(() => {
+       
         console.log("GETING NEW PRSOPECT")
         async function persist(jwt) { 
             //console.log("Persisting Log")
@@ -90,33 +119,45 @@ export default function ProspectList() {
               const json = await data;
               // setCookie('token',json.jwt,7);
               // console.log('success LogIn', data);
-              ctx.setUser(data)
-              ctx.setUser({...data, ProfilePicture : data.ProfilePicture.url})
+              ctx.setUser(data);
+              try{
+                ctx.setUser({...data, ProfilePicture : data.ProfilePicture.url})
+              }catch(error){
+                // console.log('No Profile Picture')
+              }
+              
               //console.log(json)
               // console.log('success LogIn', json.user);
       
           }
-          persist(ctx.getCookie('token'));
+          if(!ctx.loggedIn){
+            router.push("/pcm/login")
+        }else{
+            persist(ctx.getCookie('token'));
+        }
+       
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [success])
 
     async function addProspect () {
-        if(form.name.length <= 5 || form.address.length <= 5 || form.contact.length <= 6 || form.facebookname.length <= 5 ){
-            return ctx.handleToaster("Please Complete All The Forms","warning");
+        if(form.firstname.length <= 5 || form.lastname.length <= 5 ){
+            return ctx.handleToaster("Atleast add The First Name and Last Name", "warning");
         }
         axios
         .post(`${config.SERVER_URL}/prospects`, {
-        name: form.name,
-        address: form.address,
+        firstname: form.firstname,
+        lastname: form.lastname, 
         contact: form.contact,
-        facebookname: form.facebookname,
-        PCMday: ctx.PCMday.toString(),
+        email: form.email, 
+        geocode: form.geocode,
+        notification: form.notification, 
+        interest: form.interest,
         createdAt: new Date(),
         users_permissions_user: ctx.user
     }, {
         headers: { Authorization: `Bearer ${ctx.getCookie("token")}` }
     }).then(res=>{
-        setForm({name: '', address:"", contact:"", facebookname:''});
+        setForm({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: ''});
         setSuccess(!success)
         ctx.setModal({open:false})
         ctx.handleToaster("Your Prospect Is added on the list","success");
@@ -139,11 +180,26 @@ export default function ProspectList() {
         ctx.handleToaster("Sorry. There Is A Problem.","error");
     })
     }
+    
+    
 
 
 
     return (
-        <div className={classes.root}>
+        <div>
+            <Header1/>
+            <div className={classes.root}>
+            <Head>
+                <title>My Prospect List</title>
+            </Head>
+            
+            <div className={classes.backBox} >
+                <Link href='/pcm/dashboard'>
+                    <IconButton>
+                        <ArrowBackIcon className={classes.back} />
+                    </IconButton>
+                </Link>
+            </div>
             <div  className={classes.inputBox}>
             <Accordion color='primary'  >
                 <AccordionSummary
@@ -163,10 +219,10 @@ export default function ProspectList() {
                         <div className={classes.formBox} >
                             <div className={classes.formItem}>
                                 <FormControl variant="filled" fullWidth>
-                                    <InputLabel htmlFor="filled-adornment-password" >Complete Name</InputLabel>
+                                    <InputLabel htmlFor="filled-adornment-password" >First Name</InputLabel>
                                         <OutlinedInput
-                                            onChange={(e)=>setForm({...form, name: e.target.value})}
-                                            value={form.name}
+                                            onChange={(e)=>setForm({...form, firstname: e.target.value})}
+                                            value={form.firstname}
                                             id="filled-adornment-email"
                                             fullWidth
                                             inputProps={{
@@ -180,10 +236,27 @@ export default function ProspectList() {
                         <div className={classes.formBox} >
                             <div className={classes.formItem}>
                                 <FormControl variant="filled" fullWidth>
-                                    <InputLabel htmlFor="filled-adornment-password" >Address</InputLabel>
+                                    <InputLabel htmlFor="filled-adornment-password" >Last Name</InputLabel>
                                         <OutlinedInput
-                                            value={form.address}
-                                            onChange={(e)=>setForm({...form, address: e.target.value})}
+                                            onChange={(e)=>setForm({...form, lastname: e.target.value})}
+                                            value={form.lastname}
+                                            id="filled-adornment-email"
+                                            fullWidth
+                                            inputProps={{
+                                                autoComplete: 'none',
+                                            }}
+                                        />
+                                </FormControl>
+                            </div>   
+                        </div> 
+
+                        <div className={classes.formBox} >
+                            <div className={classes.formItem}>
+                                <FormControl variant="filled" fullWidth>
+                                    <InputLabel htmlFor="filled-adornment-password" >Email Address</InputLabel>
+                                        <OutlinedInput
+                                            value={form.email}
+                                            onChange={(e)=>setForm({...form, email: e.target.value})}
                                             multiline
                                             id="filled-adornment-email"
                                             fullWidth
@@ -216,10 +289,10 @@ export default function ProspectList() {
                         <div className={classes.formBox} >
                             <div className={classes.formItem}>
                                 <FormControl variant="filled" fullWidth>
-                                    <InputLabel htmlFor="filled-adornment-password" >Facebook Account Name</InputLabel>
+                                    <InputLabel htmlFor="filled-adornment-password" >Interest</InputLabel>
                                         <OutlinedInput
-                                            value={form.facebookname}
-                                            onChange={(e)=>setForm({...form, facebookname: e.target.value})}
+                                            value={form.interest}
+                                            onChange={(e)=>setForm({...form, interest: e.target.value})}
                                             id="filled-adornment-email"
                                             fullWidth
                                             inputProps={{
@@ -257,48 +330,71 @@ export default function ProspectList() {
                                             onClick={(event) => event.stopPropagation()}
                                             onFocus={(event) => event.stopPropagation()}
                                             control={<Checkbox color="primary" checked={false} />}
-                                            label={person.name}
+                                            label={`${person.firstname} ${person.lastname}`}
                                         />
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <div style={{width: '100%'}}>
                                             <Typography color='primary' variant='h6'>
-                                                Facebook Account Name: 
+                                                First Name: 
                                             </Typography>
                                             <Typography variant='body1'>
-                                                {person.facebookname}
+                                                {person.firstname}
                                             </Typography>
-                                            <br/>
+
                                             <Typography color='primary' variant='h6'>
-                                                Address: 
+                                                Last Name: 
+                                            </Typography>
+
+                                            <Typography variant='body1'>
+                                                {person.lastname}
                                             </Typography>
                                             
-                                            <Typography  variant='body1'>
-                                                {person.address}
+                                            <Typography color='primary' variant='h6'>
+                                                Email: 
+                                            </Typography>
+                                            <Typography variant='body1'>
+                                                {person.email}
                                             </Typography>
                                             <br/>
                                             <Typography color='primary' variant='h6'>
                                                 Contact: 
                                             </Typography>
-                                            <Typography variant='body1'>
+                                            
+                                            <Typography  variant='body1'>
                                                 {person.contact}
                                             </Typography>
                                             <br/>
                                             <Typography color='primary' variant='h6'>
-                                                Created At: 
+                                                Interest: 
                                             </Typography>
                                             <Typography variant='body1'>
-                                               PCM Journey Day {person.PCMday}
+                                                {person.interest}
                                             </Typography>
+                                            <br/>
+                                            <Typography color='primary' variant='h6'>
+                                                Geolocation: 
+                                            </Typography>
+                                            <Typography variant='body1'>
+                                                {person.geocode}
+                                            </Typography>
+                                            <br/>
                                             
                         
                                             <div className={classes.detailsButton}>
                                                 <Button variant="outlined" color="primary" onClick={()=>{ctx.setModal({open:true, title: "Are You sure You want to permanently delete this user?",message: '', function: () => deleteProspect(person.id) }) } }>
                                                     Delete
                                                 </Button>
-                                                <Button variant="contained" color="primary" >
-                                                    Recruited
-                                                </Button>
+                                                <div>
+                                                    <Button style={{margin:'0px 10px'}} variant="contained" href={`tel:${person.contact}`} color="primary" disabled={person.contact === ""}>
+                                                        Call
+                                                    </Button>
+                                                    <Button variant="contained" color="primary" href={`mailto:${person.email}`} disabled={person.email === ""} >
+                                                        Email
+                                                    </Button>
+                                                </div>
+
+                                               
                                             </div>
                                             
                                         </div>
@@ -314,7 +410,9 @@ export default function ProspectList() {
                     })}
             
             </Grid>
-            
+          
+        </div>
+        <Footer1/>
         </div>
     );
 

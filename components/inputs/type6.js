@@ -37,7 +37,7 @@ export default function Type6({ label='Undefined', field='Undefined', type="none
                             dispatch({
                                 type:"ONCHANGE",
                                 field:  field,
-                                payload: e.target.payload
+                                payload:  String(e.target.value)
                             });
                         }}
                         inputProps={{

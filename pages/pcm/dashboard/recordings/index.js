@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/link-passhref */
 import React, {useEffect, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +15,10 @@ import IconButton from '@material-ui/core/IconButton';
 import  Link  from 'next/link';
 import moment from 'moment';
 import config from '@/config/configuration';
+
+import Head from 'next/head'
+import {AuthContext} from '@/context/context';
+import { useRouter } from 'next/router'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,7 +48,8 @@ export default function Watch() {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
     const [video , setVideo] = React.useState([]);
-
+    const router = useRouter()
+    const ctx = useContext(AuthContext);
 
     useEffect(() => {
         async function getVideo() { 
@@ -52,7 +58,12 @@ export default function Watch() {
               });
               setVideo(data)
         }
-        getVideo()
+        if(!ctx.loggedIn){
+            router.push("/pcm/login")
+        }else{
+            getVideo()
+        }
+       
     }, [])
 
     const handleExpandClick = () => {
@@ -61,6 +72,9 @@ export default function Watch() {
 
     return (
         <div className={classes.root}>
+            <Head>
+                <title>PCM ONLINE RECORDINGS</title>
+            </Head>
             {video.map((vid, index)=>{
                 return (
                     <Card key={index} className={classes.cardroot}>

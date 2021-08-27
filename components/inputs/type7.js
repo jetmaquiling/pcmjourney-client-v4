@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-export default function Type7({ label='Undefined', field='Undefined', type="none", autoComplete="none", setForm }) {
+export default function Type7({value="", label='Undefined', field='Undefined', type="none", autoComplete="none", dispatch  }) {
     const classes = useStyles();
     
     return (
@@ -25,8 +25,13 @@ export default function Type7({ label='Undefined', field='Undefined', type="none
                 <FormControl className={clsx(classes.margin, classes.textField)} variant="filled" fullWidth>
                     <InputLabel >{label}</InputLabel>
                     <OutlinedInput
-                        onChange={(e)=> setForm(e)}
+                        onChange={(e)=> dispatch({
+                            type:"ONCHANGE",
+                            field: field,
+                            payload: e.target.value
+                        })}
                         type={type}
+                        value={value}
                         inputProps={{
                             autoComplete: {autoComplete},
                         }}

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 import React,{ useReducer, useState} from 'react'
 import Typography from '@material-ui/core/Typography';
 import useStyles from '@/useStyles/supportStyles';
@@ -17,6 +18,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import Link from "next/link";
+import IconButton from '@material-ui/core/IconButton';
+import Head from 'next/head'
 
 
 function Alert(props) {
@@ -156,7 +161,13 @@ export default function Support() {
             
 
             <div className={classes.box2}>
-
+                <div style={{display: 'flex', justifyContent: 'flex-start'}} >
+                    <Link href='/pcm'>
+                        <IconButton>
+                            <ArrowBackIcon className={classes.back} />
+                        </IconButton>
+                    </Link>
+                </div>
                 <div  className={classes.titleBox}>
                     <Typography style={{fontSize: '40px'}} variant='h2'>
                         Contact Us
@@ -178,7 +189,6 @@ export default function Support() {
 
 
             </div>
-
         </div>
     );
 }

@@ -173,7 +173,9 @@ export default function Header1 (){
 
             <div >
               <Link href="/pcm">
-                <Image alt="Logo" src={PCMBlack} width={70} height={70}  className={classes.logoImage}/>
+                <a>
+                  <Image alt="Logo" src={PCMBlack} width={70} height={70}  className={classes.logoImage}/>
+                </a>
               </Link>
             </div>
 

@@ -15,7 +15,7 @@ import useSound from 'use-sound';
 import Button from '@material-ui/core/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import ShareIcon from '@material-ui/icons/Share';
-
+import Head from 'next/head'
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
@@ -100,6 +100,10 @@ export default function BlogPage() {
 
             <div className={classes.root} ref={myRef} >
 
+                <Head>  
+                    <title>Blog</title>
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                </Head>
                 {/* <MetaTags>
                     <meta property="og:type" content="website" />
                     <title>{blog.title}</title>

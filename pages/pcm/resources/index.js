@@ -1,6 +1,7 @@
 import React,{useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Head from 'next/head'
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
@@ -29,6 +30,10 @@ export default function Backlinks() {
     }, [])
     return (
         <div className={classes.box} ref={myRef}>
+            <Head>
+                <title>PCM Journey Resources</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <Typography variant="h4">
                 Resources
             </Typography>

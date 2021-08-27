@@ -1,7 +1,7 @@
 import React,{useState, useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-
+import Head from 'next/head'
 
 const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 
@@ -36,6 +36,10 @@ export default function TermsAndPolicies() {
 
     return (
         <div className={classes.box} ref={myRef}>
+            <Head>
+                <title>Terms and Policy Agreement</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <div className={classes.content}>
             <Typography variant="h4">Privacy Policy for PCM JOURNEY ONLINE</Typography>
 

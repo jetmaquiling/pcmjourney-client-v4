@@ -147,31 +147,6 @@ export function PoliciesComponent() {
 
 
 
-export function SuccessModalComponent() {
-    const classes = useStyles();
-    const ctx = React.useContext(AuthContext);
 
 
-  
-  
-  return (
-            <Dialog
-            style={{zIndex: 9999}}
-            open={ctx.success.status}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-        >
-            <DialogTitle id="alert-dialog-title">{}</DialogTitle>
-            <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-                Welcome To The PCM Online Class!
-            </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-            <Button onClick={ctx.logIn(ctx.success.email, ctx.success.password)} color="primary" autoFocus>
-                Continue
-            </Button>
-            </DialogActions>
-        </Dialog> 
-  );
-}
+

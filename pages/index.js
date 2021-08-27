@@ -13,6 +13,9 @@ import Image from 'next/image';
 import Support from './support/index';
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
+import Head from 'next/head'
+
+
 
 const moment7 = moment();
 const moment8 = moment().add('90','days');
@@ -23,7 +26,9 @@ export default function LandingPage () {
 
   return (
       <div className={classes.root}  >
-           <Header1/>
+           <Head>
+                <title>PHBWorx International Homepage</title>
+            </Head>
           <div className={classes.firstSection} >
               <div className={classes.title} >
                   <Typography variant="h1" className={[classes.h1 , animation.animateTitle1].join(' ')} >PHBWORX</Typography>
@@ -115,7 +120,6 @@ export default function LandingPage () {
           </div>
           <Support/>
 
-          <Footer1/>
       </div>
       
       

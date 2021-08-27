@@ -13,6 +13,8 @@ import Image from 'next/image';
 import Support from '../support/index';
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
+import Head from 'next/head'
+
 
 const moment7 = moment();
 const moment8 = moment().add('90','days');
@@ -21,6 +23,14 @@ export default function LandingPage () {
 
   return (
       <div className={classes.root}  >
+            <Head>
+                <title>PCM Journey Online Class - "This journey is for those who want to go through a training that will give them a significant result in the end. Are you up for it?."</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <meta property="og:url" content="https://jetzrecords.com/" />
+                <meta property="og:type" content="website" />
+                <meta property="og:description"        content="This journey is for those who want to go through a training that will give them a significant result in the end. Are you up for it?."/>
+                <meta property="og:image"    content="/Images/thumbnail.jpg" />
+            </Head>
            <Header1/>
           <div className={classes.firstSection} >
               <div className={classes.title} >
@@ -57,7 +67,7 @@ export default function LandingPage () {
         
           <div className={classes.h5} >
                   <LazyLoad height={50} once >
-                      <Image src={PCMLOGO} className={classes.logoImage} />
+                      <Image src={PCMLOGO} className={classes.logoImage} height={200} width={200} />
                   </LazyLoad>
                   <Typography variant="h5" >EXPLORE THE PCM JOURNEY</Typography>
               </div> 

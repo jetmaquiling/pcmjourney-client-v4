@@ -3,9 +3,8 @@ import axios from 'axios';
 import config from '@/config/configuration.json'
 import moment from 'moment';
 import { useRouter } from 'next/router'
-
-
-
+import Link from 'next/link';
+import Image from 'next/image';
 
 ////////////////////////////////////////////////////////
 
@@ -286,7 +285,7 @@ function AuthContextProvider(props) {
               ranking: form.Ranking,
               username: form.Username,
               active3Uplines: `${form.upline1}, ${form.upline2}, ${form.upline3}`,
-              experiencedNetBuilder: (form.Trained === 'true' ? true : false ),
+              experiencedNetBuilder: (form.Trained === 'trained' ? true : false ),
               networkBuilderEvents: form.Programs ,
               users_permissions_user: response.data.user
           }, {
@@ -364,8 +363,8 @@ function AuthContextProvider(props) {
 
 
 
-
-  return <AuthContext.Provider 
+  if(live){
+    return <AuthContext.Provider 
     value={{
         user: user,
         loggedIn: loggedIn,
@@ -399,6 +398,17 @@ function AuthContextProvider(props) {
   >
       {props.children}
   </AuthContext.Provider>
+  }else{
+    return (
+  
+        <div style={{ width: '100%',height: '100vh',display: 'flex',textAlign: 'center',justifyContent: 'center',flexDirection: 'column',alignItems: 'center',
+       }}>
+            <Link href="/" ><a><Image alt="logo" src={"/Images/PCM Black.png"} height={120} width={120}/></a></Link>
+        </div>
+    )
+   
+  }
+  
 
 }
 

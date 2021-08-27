@@ -10,7 +10,7 @@ const scrollToRef = (ref) => window.scrollTo(0, ref.current.offsetTop)
 import { useRouter } from 'next/router'
 import {AuthContext} from '@/context/context';
 import { makeStyles } from '@material-ui/core/styles';
-
+import Head from 'next/head'
 
 import FormControl from '@material-ui/core/FormControl';
 import clsx from 'clsx';
@@ -21,7 +21,8 @@ import HelpIcon from '@material-ui/icons/Help';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-
+import Header1 from '@/components/headers/header1';
+import Footer1 from '@/components/footers/footer1';
 
 export default function Login () {
     const router = useRouter()
@@ -50,7 +51,10 @@ export default function Login () {
  
     return (
             <div className={classes.root} ref={myRef}>
-                
+                <Head>
+                    <title>Log In PCM Journey Online Class Account</title>
+                </Head>
+                <Header1/>
                 <div className={classes.backBox} >
                     <Link href='/pcm'>
                         <IconButton>
@@ -140,7 +144,7 @@ export default function Login () {
                 </div>
 
 
-
+                <Footer1/>
             </div>
         );
 }

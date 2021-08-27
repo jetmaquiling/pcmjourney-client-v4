@@ -13,7 +13,7 @@ export default makeStyles((theme) => ({
     },
 
     box1:{
-        backgroundImage: `url("Images/image.jpg")`,
+        backgroundImage: `url("/Images/image.jpg")`,
         width: '60%',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: "center",
@@ -27,7 +27,7 @@ export default makeStyles((theme) => ({
     box2:{
         width: '40%',
         textAlign: 'center',
-        margin: '40px 20px 40px 20px',
+        margin: '0px 20px 40px 20px',
         [theme.breakpoints.down('sm')]: {
             width: '500px',
         },    
@@ -48,6 +48,13 @@ export default makeStyles((theme) => ({
     },
     formItemButton:{
         margin: '80px auto 20px auto', 
+    },
+    back:{
+        fontSize: '50px',
+        color: theme.palette.primary.main,
+        [theme.breakpoints.down('xs')]: {
+            fontSize:'30px'
+        },    
     },
 
   }));

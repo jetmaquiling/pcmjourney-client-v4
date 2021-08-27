@@ -26,10 +26,11 @@ export default function Type1({ label='Undefined', field='Undefined', type="none
                     <InputLabel >{label}</InputLabel>
                     <OutlinedInput
                     
-                        onBlur={(e)=> dispatch({
+                        onBlur={(e)=> 
+                            dispatch({
                             type:"ONCHANGE",
                             field: field,
-                            payload: e.target.value
+                            payload: String(e.target.value)
                         })}
                         type={type}
                         inputProps={{

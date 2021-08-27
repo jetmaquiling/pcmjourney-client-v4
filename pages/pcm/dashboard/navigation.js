@@ -15,6 +15,8 @@ import ContactMailIcon from '@material-ui/icons/ContactMail';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import Link from 'next/link';
 import AlbumIcon from '@material-ui/icons/Album';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -131,7 +133,7 @@ export default function Navigation() {
 
         <Grid item md={6} className={classes.rootItem}>
             <div className={classes.noteBox}  >
-                <Typography variant="body1" >100 Prospect List:</Typography>
+                <Typography variant="body1" >Prospect List:</Typography>
                 <Typography variant="body2" >Having a list of prospects is important in lead generation and translates to profits in businesses in the long-term. Think about it- you might be the most skilled salesperson at your company, but if you’re reaching out to the wrong people, your sales skills will have no impact on their desire to purchase your product. Your success is dependent on the quality of your sales prospect lists. </Typography>
             </div>
             <Link href="/pcm/dashboard/prospectlist">
@@ -239,7 +241,24 @@ export default function Navigation() {
         </Grid>
 
  */}
-
+            <Grid item md={6} className={classes.rootItem}>
+                <div className={classes.noteBox}  >
+                    <Typography variant="body1" >Link Booster :</Typography>
+                    <Typography variant="body2" > Understanding the concept of sales funnels is important because it's a useful model for visualizing the customer journey from initial awareness all the way through conversion. The sales funnel provides a useful framework through which you can analyze your business and identify areas for improvement.</Typography>
+                </div>
+                
+                <Link href="/pcm/dashboard/link">
+                    <Button variant="contained" className={classes.button}  >
+                        <div className={classes.buttonitembox}>
+                            <div style={{display: 'flex',alignItems: 'center',}}>
+                            <TrendingUpIcon className={classes.iconButton} />
+                            <Typography className={classes.textButton} variant="body1" >Link Booster</Typography>
+                            </div>
+                            <ArrowForwardIosIcon className={classes.arrowButton} />
+                        </div>
+                    </Button>
+                </Link>
+            </Grid>
         
             <Grid item md={6} className={classes.rootItem}>
             

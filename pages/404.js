@@ -8,17 +8,23 @@ import Link from 'next/link';
 import PCMLOGO from '@/public/Images/PCMLOGO.png';
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
+import Image from 'next/image';
+import Head from "next/head";
 
 export default function NotFound() {
   const classes = useStyles();
 
   return (
       <div className={classes.root}  >
+            <Head>
+                <title>Oooooops... That page cannot be found.</title>
+            </Head>
            <Header1/>
                 <div className={classes.main}>
+                    <Link href="/" ><a><Image src={"/Images/PCM Black.png"} height={90} width={90}/></a></Link>
                     <Typography variant="h5" >Oooooops...</Typography>
                     <Typography variant="h5" >That page cannot be found.</Typography>
-                    <Typography variant="h5"  >Go back to the <Link href="/" style={{color:'EC113E'}}><a >Homepage</a></Link></Typography>
+                    <Typography variant="h5"  >Go back to the <Link href="/" ><a style={{color:'#EC113E'}}>Homepage</a></Link></Typography>
                 </div>
             <Footer1/>
       </div>

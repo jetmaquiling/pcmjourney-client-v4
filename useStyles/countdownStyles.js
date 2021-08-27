@@ -4,7 +4,7 @@ export default makeStyles((theme) => ({
     root: {
         display: "flex",
         flexDirection: 'column',
-        backgroundImage: `url("Images/background.jpg")` ,
+        backgroundImage: `url("/Images/background.jpg")` ,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: "center",
         backgroundSize: 'cover',

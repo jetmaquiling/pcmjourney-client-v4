@@ -6,7 +6,9 @@ import Button from '@material-ui/core/Button';
 import moment from 'moment';
 import Link from 'next/link';
 import {AuthContext} from "@/context/context";
-
+import Header1 from '@/components/headers/header1';
+import Footer1 from '@/components/footers/footer1';
+import Head from 'next/head'
 
 
 export default function Countdown() {
@@ -60,55 +62,65 @@ export default function Countdown() {
 
       
   return (
-    <div className={classes.root} >
-            <Typography variant='h5' className={classes.title} >PCM JOURNEY ONLINE CLASS IS STARTING IN: </Typography>
-            <div className={classes.dateBox}>
-                <div className={classes.dateItem}> 
-                    <Typography variant='h2' className={classes.dateText}  >{Math.abs(1 - state.days)}</Typography>
-                    <Typography variant='h3'  className={classes.dateLabel}  >DAYS</Typography>
-                </div>
-                <div className={classes.dateItem}>
-                    <Typography variant='h2' className={classes.dateText} >{Math.abs(state.hours - 7)}</Typography>
-                    <Typography variant='h3' className={classes.dateLabel}>HOURS</Typography>
-                </div>
-                <div className={classes.dateItem}>
-                    <Typography variant='h2' className={classes.dateText} >{state.minutes}</Typography>
-                    <Typography variant='h3' className={classes.dateLabel}>MINUTES</Typography>
-                </div>
-                <div className={classes.dateItem}>
-                    <Typography variant='h2' className={classes.dateText} >{state.seconds}</Typography>
-                    <Typography variant='h3' className={classes.dateLabel}>SECONDS</Typography>
-                </div>
+      <div>
+        <Head>
+            <title>PCM Journey Class</title>
+            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        </Head>
+          <Header1/>
+        <div className={classes.root} >
+                
+                    <Typography variant='h5' className={classes.title} >PCM JOURNEY ONLINE CLASS IS STARTING IN: </Typography>
+                    <div className={classes.dateBox}>
+                        <div className={classes.dateItem}> 
+                            <Typography variant='h2' className={classes.dateText}  >{Math.abs(1 - state.days)}</Typography>
+                            <Typography variant='h3'  className={classes.dateLabel}  >DAYS</Typography>
+                        </div>
+                        <div className={classes.dateItem}>
+                            <Typography variant='h2' className={classes.dateText} >{Math.abs(state.hours - 7)}</Typography>
+                            <Typography variant='h3' className={classes.dateLabel}>HOURS</Typography>
+                        </div>
+                        <div className={classes.dateItem}>
+                            <Typography variant='h2' className={classes.dateText} >{state.minutes}</Typography>
+                            <Typography variant='h3' className={classes.dateLabel}>MINUTES</Typography>
+                        </div>
+                        <div className={classes.dateItem}>
+                            <Typography variant='h2' className={classes.dateText} >{state.seconds}</Typography>
+                            <Typography variant='h3' className={classes.dateLabel}>SECONDS</Typography>
+                        </div>
 
-            </div>
-                {/* PLACE CONDITIONAL HERE */}
-            <div className={classes.buttonBox1} style={{display:ctx.loggedIn && 'none'}}>
-                    <Link href='/pcm/signup'>
-                        <Button variant="contained" color="primary" className={classes.appButton1} >
-                            Sign Up
-                        </Button>
-                    </Link>
-                    <Link href='/pcm/login'>
-                        <Button variant="contained" color="secondary" className={classes.appButton1} >
-                            LOG In
-                        </Button>
-                    </Link>
-            </div>
-                {/* PLACE CONDITIONAL HERE */}
-            <div className={classes.buttonBox2} style={{display:!ctx.loggedIn && 'none'}}>
-                    <a href={ctx.events.PCMlink} >
-                        <Button variant="contained" color="secondary" className={classes.appButton2} >
-                            <Typography variant='h6' color="primary"  >  Open Zoom Meeting Now</Typography>
-                          
-                        </Button>
-                    </a>
-                    {/* <Button onClick={copyCodeToClipboard} style={{backgroundColor: (link && '#79ce638e') }} variant="contained" color="secondary" className={classes.appButton2} >
-                            {!link ? 'Click to Copy Invite Link' : "Link Is Copied"}
-                    </Button> */}
-            </div>
+                    </div>
+                        {/* PLACE CONDITIONAL HERE */}
+                    <div className={classes.buttonBox1} style={{display:ctx.loggedIn && 'none'}}>
+                            <Link href='/pcm/signup'>
+                                <Button variant="contained" color="primary" className={classes.appButton1} >
+                                    Sign Up
+                                </Button>
+                            </Link>
+                            <Link href='/pcm/login'>
+                                <Button variant="contained" color="secondary" className={classes.appButton1} >
+                                    LOG In
+                                </Button>
+                            </Link>
+                    </div>
+                        {/* PLACE CONDITIONAL HERE */}
+                    <div className={classes.buttonBox2} style={{display:!ctx.loggedIn && 'none'}}>
+                            <a href={ctx.events.PCMlink} >
+                                <Button variant="contained" color="secondary" className={classes.appButton2} >
+                                    <Typography variant='h6' color="primary"  >  Open Zoom Meeting Now</Typography>
+                                
+                                </Button>
+                            </a>
+                            {/* <Button onClick={copyCodeToClipboard} style={{backgroundColor: (link && '#79ce638e') }} variant="contained" color="secondary" className={classes.appButton2} >
+                                    {!link ? 'Click to Copy Invite Link' : "Link Is Copied"}
+                            </Button> */}
+                    </div>
 
 
-            
-    </div>
+                
+            </div>
+            <Footer1/>
+      </div>
+    
   );
 }
