@@ -23,12 +23,12 @@ import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-    margin: '20px 0px',
-      width: '100%',
-      display:'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
+        margin: '20px 0px',
+        width: '100%',
+        display:'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     cardroot:{
         margin: '20px 0px',

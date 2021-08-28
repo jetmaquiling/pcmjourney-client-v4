@@ -149,7 +149,7 @@ export default function LinkCreate () {
   
     }
     
-    if(!ctx.loggedIn){
+    if(!ctx.getCookie("isLoggedIn")){
         router.push("/pcm/login")
     }
   

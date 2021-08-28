@@ -21,6 +21,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
+import AlbumIcon from '@material-ui/icons/Album';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import SettingsIcon from '@material-ui/icons/Settings';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import EmailIcon from '@material-ui/icons/Email';
@@ -277,7 +280,33 @@ export default function Header1 (){
                       <Link href='/pcm/countdown'>
                         <ListItem button >
                               <ListItemIcon><DirectionsWalkIcon color="primary" /></ListItemIcon>
-                              <ListItemText primary={"PCM Journey"} /> 
+                              <ListItemText primary={"PCM Online Link"} /> 
+                              <ArrowForwardIosIcon color="primary" style={{margin:'0px 0px 0px 30px'}} />
+                        </ListItem>
+                      </Link>
+
+
+                      <Link href='/pcm/dashboard/link'>
+                        <ListItem button >
+                              <ListItemIcon><TrendingUpIcon color="primary" /></ListItemIcon>
+                              <ListItemText primary={"Link Booster"} /> 
+                              <ArrowForwardIosIcon color="primary" style={{margin:'0px 0px 0px 30px'}} />
+                        </ListItem>
+                      </Link>
+
+                      <Link href='/pcm/dashboard/prospectlist'>
+                        <ListItem button >
+                              <ListItemIcon><FormatListNumberedIcon color="primary" /></ListItemIcon>
+                              <ListItemText primary={"My Prospects"} /> 
+                              <ArrowForwardIosIcon color="primary" style={{margin:'0px 0px 0px 30px'}} />
+                        </ListItem>
+                      </Link>
+
+                      
+                      <Link href='/pcm/dashboard/recordings'>
+                        <ListItem button >
+                              <ListItemIcon><AlbumIcon color="primary" /></ListItemIcon>
+                              <ListItemText primary={"PCM Recordings"} /> 
                               <ArrowForwardIosIcon color="primary" style={{margin:'0px 0px 0px 30px'}} />
                         </ListItem>
                       </Link>
@@ -289,6 +318,8 @@ export default function Header1 (){
                               <ArrowForwardIosIcon color="primary" style={{margin:'0px 0px 0px 30px'}} />
                         </ListItem>
                       </Link>
+
+                      
 
                       <Link href='/pcm'>
                         <ListItem button >

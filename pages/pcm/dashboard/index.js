@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Grid } from '@material-ui/core';
 import React, {useContext, useEffect} from 'react'
 import Navigation from './navigation';
@@ -19,7 +20,14 @@ export default function Dashboard () {
 
 
     React.useEffect(() => {
-        scrollToRef(myRef)
+        scrollToRef(myRef);
+        try{
+            if(ctx.user.linkfunnels.length === 0){
+                ctx.setModal({open: true, message: "You don't have a Link Booster account yet? Click proceed to create now!", function: ()=>{router.push('/pcm/dashboard/link/create')}})
+            }
+        }catch{
+            
+        }
     }, [])
 
 

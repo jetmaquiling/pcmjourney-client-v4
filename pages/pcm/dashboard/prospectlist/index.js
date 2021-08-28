@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center'
     },
     backBox:{
-        width: '550px',
+        width: '100%',
         display: 'flex',
         justifyContent: 'flex-start',
         [theme.breakpoints.down('xs')]: {
@@ -339,7 +339,7 @@ export default function ProspectList() {
                                                 First Name: 
                                             </Typography>
                                             <Typography variant='body1'>
-                                                {person.firstname}
+                                                {person.firstname == "" ? "n/a" : person.firstname}
                                             </Typography>
 
                                             <Typography color='primary' variant='h6'>
@@ -347,14 +347,14 @@ export default function ProspectList() {
                                             </Typography>
 
                                             <Typography variant='body1'>
-                                                {person.lastname}
+                                                {person.lastname == "" ? "n/a" : person.lastname}
                                             </Typography>
                                             
                                             <Typography color='primary' variant='h6'>
                                                 Email: 
                                             </Typography>
                                             <Typography variant='body1'>
-                                                {person.email}
+                                                {person.email == "" ? "n/a" : person.email}
                                             </Typography>
                                             <br/>
                                             <Typography color='primary' variant='h6'>
@@ -362,21 +362,21 @@ export default function ProspectList() {
                                             </Typography>
                                             
                                             <Typography  variant='body1'>
-                                                {person.contact}
+                                                {person.contact == "" ? "n/a" : person.contact}
                                             </Typography>
                                             <br/>
                                             <Typography color='primary' variant='h6'>
                                                 Interest: 
                                             </Typography>
                                             <Typography variant='body1'>
-                                                {person.interest}
+                                                {person.interest == "" ? "n/a" : person.interest}
                                             </Typography>
                                             <br/>
                                             <Typography color='primary' variant='h6'>
                                                 Geolocation: 
                                             </Typography>
                                             <Typography variant='body1'>
-                                                {person.geocode}
+                                                {person.geocode == "" ? "n/a" : person.geocode}
                                             </Typography>
                                             <br/>
                                             

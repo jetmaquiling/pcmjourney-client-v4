@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import animation from '@/styles/animation.module.css';
 import moment from 'moment';
 import LazyLoad from 'react-lazyload';
-import useStyles from '@/useStyles/landingPageStyles';
+import useStyles from '@/useStyles/hubStyles';
 import Link from 'next/link';
 import PCMLOGO from '@/public/Images/PCMLOGO.png';
 import Image from 'next/image';
