@@ -40,6 +40,7 @@ export default function C2B() {
   const [user , setUser] = React.useState({});
   const [picture, setPicture] = React.useState('');
   const [token, setToken] = React.useState('');
+  const [notification, setNotification] = React.useState('ExponentPushToken[aJL76BLEZ6sLgTdgkerupK]');
 
   const handleClickOpen = () => {
     console.log(user);
@@ -61,7 +62,25 @@ export default function C2B() {
         interest: form.interest,
         users_permissions_user: token,
     }).then(response => {
-        router.push("/")
+        fetch('https://exp.host/--/api/v2/push/send',{
+            method: 'POST',
+            headers:{
+                'Accept': 'application/json',
+                'Accept-Encoding': 'gzip, deflate',
+                'Content-Type':'application/json',
+            },
+            body: JSON.stringify({
+                to: notification,
+                data: {extra: "Some Data"},
+                title: 'New Prospect Added',
+                body: "Click here to view your new prospect and start marketing!!!"
+            })
+        }).then(res=> {
+            router.push("/")
+        }).catch(error=>{
+            router.push("/")
+        })
+        
     })
 };
 
