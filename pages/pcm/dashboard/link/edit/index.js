@@ -101,7 +101,7 @@ export default function LinkEdit () {
                 axios.post(`${config.SERVER_URL}/upload/`,formData
                 ).then(res => {
                     ctx.setLoad(false);
-                    ctx.setModal({open: true, title: 'Congratiolations, You Are Successful in Updating Link Booster', function: ()=>{ window.location.replace("/pcm/dashboard/link");}})
+                    ctx.setModal({open: true, title: 'Congratulations, You Are Successful in Updating Link Booster', function: ()=>{ window.location.replace("/pcm/dashboard/link");}})
                     
                 })
                 ctx.setLoad(false);

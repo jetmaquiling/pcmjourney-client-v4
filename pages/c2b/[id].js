@@ -40,7 +40,7 @@ export default function C2B() {
   const [user , setUser] = React.useState({});
   const [picture, setPicture] = React.useState('');
   const [token, setToken] = React.useState('');
-  const [notification, setNotification] = React.useState('ExponentPushToken[aJL76BLEZ6sLgTdgkerupK]');
+  const [notification, setNotification] = React.useState('');
 
   const handleClickOpen = () => {
     console.log(user);
@@ -62,25 +62,25 @@ export default function C2B() {
         interest: form.interest,
         users_permissions_user: token,
     }).then(response => {
-        fetch('https://exp.host/--/api/v2/push/send',{
-            method: 'POST',
-            headers:{
+
+        fetch("https://exp.host/--/api/v2/push/send", {
+            'mode': 'no-cors',
+            'method': 'POST',
+            'headers': {
                 'Accept': 'application/json',
-                'Accept-Encoding': 'gzip, deflate',
-                'Content-Type':'application/json',
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
+            body:  JSON.stringify({
                 to: notification,
                 data: {extra: "Some Data"},
                 title: 'New Prospect Added',
                 body: "Click here to view your new prospect and start marketing!!!"
             })
-        }).then(res=> {
-            router.push("/")
         }).catch(error=>{
             router.push("/")
         })
-        
+        router.push("/")
+      
     })
 };
 
@@ -101,8 +101,10 @@ export default function C2B() {
             router.push('/c2b')
             return
         }
+        console.log(data[0].notification)
         setPicture(data[0].profilepicture.url);
         setToken(data[0].users_permissions_user.id)
+        setNotification(data[0].notification)
         setUser(...data)
     }
     getLink()
