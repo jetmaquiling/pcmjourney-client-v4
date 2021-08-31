@@ -362,8 +362,6 @@ function AuthContextProvider(props) {
   }
 
 
-
-  if(live){
     return <AuthContext.Provider 
     value={{
         user: user,
@@ -398,16 +396,16 @@ function AuthContextProvider(props) {
   >
       {props.children}
   </AuthContext.Provider>
-  }else{
-    return (
+  // }else{
+  //   return (
   
-        <div style={{ width: '100%',height: '100vh',display: 'flex',textAlign: 'center',justifyContent: 'center',flexDirection: 'column',alignItems: 'center',
-       }}>
-            <Link href="/" ><a><Image alt="logo" src={"/Images/PCM Black.png"} height={120} width={120}/></a></Link>
-        </div>
-    )
+  //       <div style={{ width: '100%',height: '100vh',display: 'flex',textAlign: 'center',justifyContent: 'center',flexDirection: 'column',alignItems: 'center',
+  //      }}>
+  //           <Link href="/" ><a><Image alt="logo" src={"/Images/PCM Black.png"} height={120} width={120}/></a></Link>
+  //       </div>
+  //   )
    
-  }
+  // }
   
 
 }
