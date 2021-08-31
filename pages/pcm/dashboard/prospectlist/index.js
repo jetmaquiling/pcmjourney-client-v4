@@ -386,11 +386,14 @@ export default function ProspectList() {
                                                     Delete
                                                 </Button>
                                                 <div>
-                                                    <Button style={{margin:'0px 10px'}} variant="contained" href={`tel:${person.contact}`} color="primary" disabled={person.contact === ""}>
+                                                    <Button style={{margin:'0px 5px', padding: '3px'}} variant="contained" href={`tel:${person.contact}`} color="primary" disabled={person.contact === ""}>
                                                         Call
                                                     </Button>
-                                                    <Button variant="contained" color="primary" href={`mailto:${person.email}`} disabled={person.email === ""} >
+                                                    <Button  style={{margin:'0px 5px', padding: '3px'}} variant="contained" color="primary" href={`mailto:${person.email}`} disabled={person.email === ""} >
                                                         Email
+                                                    </Button>
+                                                    <Button style={{margin:'0px 5px', padding: '3px'}} variant="contained" href={`sms:${person.contact}`} color="primary" disabled={person.contact === ""}>
+                                                        Message
                                                     </Button>
                                                 </div>
 

@@ -15,7 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import thumbnail from '@/public/Images/thumbnailsample.jpg'
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -73,8 +73,8 @@ export default function C2B() {
             body:  JSON.stringify({
                 to: notification,
                 data: {extra: "Some Data"},
-                title: 'New Prospect Added',
-                body: "Click here to view your new prospect and start marketing!!!"
+                title: `Hey ${user.firstname}! ,New Prospect Is Added In Your List, Check It Out!`,
+                body: `Prospect name is ${form.firstname}, Click here to view your new prospect and start marketing!!!`,
             })
         }).catch(error=>{
             router.push("/")
@@ -101,17 +101,23 @@ export default function C2B() {
             router.push('/c2b')
             return
         }
-        console.log(data[0].notification)
-        setPicture(data[0].profilepicture.url);
-        setToken(data[0].users_permissions_user.id)
-        setNotification(data[0].notification)
-        setUser(...data)
+        
+        try{
+            console.log(data[0].notification)
+            setPicture(data[0].profilepicture.url);
+            setToken(data[0].users_permissions_user.id)
+            setNotification(data[0].notification)
+            setUser(...data)
+        }catch(error){
+            console.log(error)
+        }
+       
     }
     getLink()
 
     }, [id])
 
-    if(!picture){
+    if(!token){
         return (<div></div>)
     }
 
@@ -119,6 +125,10 @@ export default function C2B() {
       <div className={classes.root}  >
             <Head>
                 <title>BYOB Build Your Online Business by Eduard Reformina</title>
+                <meta property="og:type"   content="website" />
+                <meta property="og:description"  content="THIS IS A TEST PAGE PLACE ANYTHING HERE!" />
+                <meta property="og:image" content='/Images/thumbnailsample.jpg' key="ogimage" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
                     <DialogContent className={classes.modalBox} >

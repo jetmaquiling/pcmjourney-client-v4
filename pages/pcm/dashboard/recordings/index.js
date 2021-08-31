@@ -53,9 +53,7 @@ export default function Watch() {
 
     useEffect(() => {
         async function getVideo() { 
-            const {data} = await axios.get(`${config.SERVER_URL}/watches?_sort=date:ASC`, {
-              headers: { Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ODYsImlhdCI6MTYyOTIzNzUyOSwiZXhwIjoxNjMxODI5NTI5fQ.Tdi86fcc9snCkKnOpgeryGwJYYhLW5k8YZw6G7OlHaw` }
-              });
+            const {data} = await axios.get(`${config.SERVER_URL}/watches?_sort=date:ASC`);
               setVideo(data)
         }
         if(!ctx.loggedIn){
