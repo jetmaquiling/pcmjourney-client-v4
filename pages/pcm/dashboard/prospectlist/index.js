@@ -18,6 +18,14 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Link from "next/link";
 import IconButton from '@material-ui/core/IconButton';
 
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import CallIcon from '@material-ui/icons/Call';
+import SmsIcon from '@material-ui/icons/Sms';
+
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+
 import config from '@/config/configuration.json';
 import axios from 'axios';
 
@@ -65,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '20px 0px'
     },
     itemBox:{
+        overflow: 'hidden',
         padding: '10px 20px',
         [theme.breakpoints.down('sm')]: {
             padding: '10px 10px',
@@ -382,19 +391,19 @@ export default function ProspectList() {
                                             
                         
                                             <div className={classes.detailsButton}>
-                                                <Button variant="outlined" color="primary" onClick={()=>{ctx.setModal({open:true, title: "Are You sure You want to permanently delete this user?",message: '', function: () => deleteProspect(person.id) }) } }>
-                                                    Delete
-                                                </Button>
+                                                    <IconButton style={{ padding: '2px'}}  href={`tel:${person.contact}`} color="primary" onClick={()=>{ctx.setModal({open:true, title: "Are You sure You want to permanently delete this user?",message: '', function: () => deleteProspect(person.id) }) } }>
+                                                        <DeleteForeverIcon style={{fontSize: '30px'}}/>
+                                                    </IconButton>
                                                 <div>
-                                                    <Button style={{margin:'0px 5px', padding: '3px'}} variant="contained" href={`tel:${person.contact}`} color="primary" disabled={person.contact === ""}>
-                                                        Call
-                                                    </Button>
-                                                    <Button  style={{margin:'0px 5px', padding: '3px'}} variant="contained" color="primary" href={`mailto:${person.email}`} disabled={person.email === ""} >
-                                                        Email
-                                                    </Button>
-                                                    <Button style={{margin:'0px 5px', padding: '3px'}} variant="contained" href={`sms:${person.contact}`} color="primary" disabled={person.contact === ""}>
-                                                        Message
-                                                    </Button>
+                                                    <IconButton style={{margin:'0px 10px', padding: '2px' }}  href={`tel:${person.contact}`} color="primary" disabled={person.contact === ""}>
+                                                        <CallIcon style={{fontSize: '30px'}}/>
+                                                    </IconButton>
+                                                    <IconButton  style={{margin:'0px 10px' , padding: '2px'}}  color="primary" href={`mailto:${person.email}`} disabled={person.email === ""} >
+                                                        <MailOutlineIcon style={{fontSize: '30px'}}/>
+                                                    </IconButton>
+                                                    <IconButton style={{margin:'0px 10px', padding: '2px'}}  href={`sms:${person.contact}`} color="primary" disabled={person.contact === ""}>
+                                                        <SmsIcon style={{fontSize: '30px'}}/>
+                                                    </IconButton>
                                                 </div>
 
                                                
