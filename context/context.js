@@ -401,7 +401,39 @@ function AuthContextProvider(props) {
   }else{
     return (
         <div style={{visibility: "hidden"}}>
-            {props.children}
+            <AuthContext.Provider 
+                value={{
+                    user: user,
+                    loggedIn: loggedIn,
+                    logIn: logIn,
+                    logOut: logOut,
+                    signUp: signUp,
+                    success: success,
+                    setSuccess: setSuccess,
+                    checked: checked,
+                    setChecked: setChecked,
+                    load: load,
+                    terms: terms,
+                    setTerms: setTerms,
+                    setLoad: setLoad,
+                    toaster: toaster,
+                    setToaster: setToaster,
+                    handleToaster: handleToaster,
+                    handleClose: handleClose,
+                    modal: modal,
+                    setModal:  setModal,
+                    getCookie: getCookie,
+                    setCookie: setCookie,
+                    getEvents: getEvents,
+                    setUser: setUser,
+                    videos: videos,
+                    PCMday: PCMday,
+                    live: live,
+                }}
+                
+              >
+                  {props.children}
+              </AuthContext.Provider>
         </div>
       //   <div style={{ width: '100%',height: '100vh',display: 'flex',textAlign: 'center',justifyContent: 'center',flexDirection: 'column',alignItems: 'center',
       //  }}>

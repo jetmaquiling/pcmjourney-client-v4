@@ -35,7 +35,6 @@ export default function C2B() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
-  const id = router.query.id;
   const [form, setForm] = React.useState({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: ''})
   const [user , setUser] = React.useState({});
   const [picture, setPicture] = React.useState('');
@@ -96,10 +95,9 @@ export default function C2B() {
 
   React.useEffect(() => {
     async function getLink() { 
-        const {data} = await axios.get(`${config.SERVER_URL}/linkfunnels?slug=${id}`);
+        const {data} = await axios.get(`${config.SERVER_URL}/linkfunnels?slug=${router.query.id}`);
         if(!data[0]){
-            router.push('/c2b')
-            return
+            console.log(data)
         }
         
         try{
@@ -115,7 +113,7 @@ export default function C2B() {
     }
     getLink()
 
-    }, [id])
+    }, [router.query.id])
 
     if(!token){
         return (<div><Head>

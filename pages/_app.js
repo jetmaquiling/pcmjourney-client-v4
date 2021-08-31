@@ -18,11 +18,8 @@ function MyApp({ Component, pageProps }) {
           <ThemeProvider theme={theme}>
               <Head>
 
-                  <script src="//widget.manychat.com/100398772332381.js" defer="defer"></script>
-                  <script src="https://mccdn.me/assets/js/widget.js" defer="defer"></script>
-                  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-                  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
-                  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+             
+             
                   
                   
                   <link rel="apple-touch-icon" sizes="180x180" href="/Images/apple-touch-icon.png"/>

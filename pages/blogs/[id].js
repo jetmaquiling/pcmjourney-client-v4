@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import Skeleton from '@material-ui/lab/Skeleton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import useSound from 'use-sound';
 import Button from '@material-ui/core/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import ShareIcon from '@material-ui/icons/Share';
@@ -27,15 +26,11 @@ export default function BlogPage() {
     console.log(id)
     const [blog , setBlog] = React.useState({});
     const [link, setLink] = React.useState(false);
-    const [playbackRate, setPlaybackRate] = React.useState(0.75);
+
     const [liked, setLiked] = React.useState(false);
 
 
-    const [play] = useSound('https://cdn.fbsbx.com/v/t59.3654-21/234846010_632073204421373_3865757399836946474_n.mp3/bloop.mp3?_nc_cat=106&ccb=1-5&_nc_sid=7272a8&_nc_ohc=2SIl8v2XtHwAX8W2-SV&_nc_ht=cdn.fbsbx.com&oh=c995660f9c0e2e1e18ad7e18201db5d8&oe=611E37A5&dl=1', {
-        playbackRate,
-        volume: 0.5,
-      });
-
+  
     useEffect(() => {
         scrollToRef(myRef)
     }, [])
@@ -82,8 +77,7 @@ export default function BlogPage() {
         if(!liked){
             setLiked(true)
         }
-        setPlaybackRate(playbackRate + 0.1);
-        play();
+        
         setBlog({...blog, 
             likes: blog.likes + 1,
         });
