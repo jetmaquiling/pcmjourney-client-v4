@@ -51,7 +51,7 @@ function AuthContextProvider(props) {
     const [success, setSuccess] = React.useState({status:false,email: '', password: '',});
     const [checked, setChecked] = React.useState(false);
     const [modal, setModal] = React.useState({open: false, title: '', message: '', function: ()=> {}});
-    const [events, setEvents] = React.useState({PCMdate: new Date()});
+    const [events, setEvents] = React.useState({PCMdate: moment()});
     const [videos, setVideos] =  React.useState([]);
     const [live, setLive] = React.useState(false);
     //LOG IN PERSIST
@@ -407,6 +407,7 @@ function AuthContextProvider(props) {
                     loggedIn: loggedIn,
                     logIn: logIn,
                     logOut: logOut,
+                    events: events,
                     signUp: signUp,
                     success: success,
                     setSuccess: setSuccess,
