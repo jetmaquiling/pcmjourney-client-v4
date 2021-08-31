@@ -78,6 +78,11 @@ export default function C2B() {
       <div className={classes.root}  >
             <Head>
                 <title>BYOB Build Your Online Business by Eduard Reformina</title>
+                <meta property="og:type"   content="article" />
+                <meta property="og:title" content="BYOB Build Your Online Business by Eduard Reformina"/>
+                <meta property="og:description"  content="THIS IS A TEST PAGE PLACE ANYTHING HERE!" />
+                <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401452/thumbnailsample_8aae97e6c8.png' key="ogimage" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
                     <DialogContent className={classes.modalBox} >

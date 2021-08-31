@@ -30,6 +30,10 @@ function MyApp({ Component, pageProps }) {
                   <link rel="icon" type="image/png" sizes="16x16" href="/Images/favicon-16x16.png"/>
                   <link rel="manifest" href="/Images/site.webmanifest"/>
                   <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+
+                  
+                  
+            
               </Head>
               <Signs/>
               <Component {...pageProps} />

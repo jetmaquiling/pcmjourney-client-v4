@@ -15,7 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import thumbnail from '@/public/Images/thumbnailsample.jpg'
+
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -126,8 +126,9 @@ export default function C2B() {
             <Head>
                 <title>BYOB Build Your Online Business by Eduard Reformina</title>
                 <meta property="og:type"   content="website" />
+                <meta property="og:title" content="BYOB Build Your Online Business by Eduard Reformina"/>
                 <meta property="og:description"  content="THIS IS A TEST PAGE PLACE ANYTHING HERE!" />
-                <meta property="og:image" content='/Images/thumbnailsample.jpg' key="ogimage" />
+                <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401452/thumbnailsample_8aae97e6c8.png' key="ogimage" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
