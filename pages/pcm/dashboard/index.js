@@ -20,6 +20,10 @@ export default function Dashboard () {
 
 
     React.useEffect(() => {
+        if(!ctx.getCookie('isLoggedIn')){
+            router.push("/pcm/login")
+        }
+    
         scrollToRef(myRef);
         try{
             if(ctx.user.linkfunnels.length === 0){
@@ -32,10 +36,7 @@ export default function Dashboard () {
 
 
    
-    if(!ctx.getCookie('isLoggedIn')){
-        router.push("/pcm/login")
-    }
-
+    
     return (
             <div  ref={myRef} >
                  <Head>

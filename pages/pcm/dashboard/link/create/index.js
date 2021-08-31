@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/link-passhref */
-import React, {useReducer} from 'react'
+import React, {useReducer , useEffect} from 'react'
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Link from "next/link";
@@ -53,14 +53,25 @@ export default function LinkCreate () {
     const [state, dispatch] = useReducer(reducer, initialState);
     const ctx = React.useContext(AuthContext);
 
-    navigator.geolocation.getCurrentPosition(showPosition);
 
-    window.onbeforeunload = function() {
-        alert("Are You sure to exit? All your data will be erased.")
-        //if we return nothing here (just calling return;) then there will be no pop-up question at all
-        //return;
-    };
+    React.useEffect(() => {
+        if(!ctx.getCookie("isLoggedIn")){
+            router.push("/pcm/login")
+        }
 
+
+        window.navigator.geolocation.getCurrentPosition(showPosition);
+    
+        window.onbeforeunload = function() {
+            alert("Are You sure to exit? All your data will be erased.")
+            //if we return nothing here (just calling return;) then there will be no pop-up question at all
+            //return;
+        };
+        
+      });
+    
+
+    
     function showPosition(position) {
         dispatch({
             type:"ONCHANGE",
@@ -149,9 +160,7 @@ export default function LinkCreate () {
   
     }
     
-    if(!ctx.getCookie("isLoggedIn")){
-        router.push("/pcm/login")
-    }
+   
   
    
     return (
