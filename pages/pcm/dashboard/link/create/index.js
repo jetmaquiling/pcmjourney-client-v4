@@ -86,7 +86,7 @@ export default function LinkCreate () {
 
 
   
-        if(state.firstname.length <= 2 || state.lastname.length <= 2){
+        if(state.firstname.length <= 1 || state.lastname.length <= 1){
             return ctx.handleToaster("Your Name is Invalid","warning");
         }
         if(state.contact.length <= 9){
@@ -99,13 +99,13 @@ export default function LinkCreate () {
             return ctx.handleToaster("Your Account is Invalid","warning");
         }
         if(state.motto.length <= 5){
-          return ctx.handleToaster("Tell us WHY you're joining?","warning");
+          return ctx.handleToaster("Tell us you Motto?","warning");
         }
         if(state.slug.length <= 2){
           return ctx.handleToaster("You Link Name is Invalid","warning");
         }
         if (!ctx.checked){
-            return ctx.handleToaster("Please Agree to the Terms And Agreements","error");
+            return ctx.handleToaster("Please Agree to the Terms And Agreements","warning");
         }
        
         ctx.setLoad(true)

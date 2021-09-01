@@ -2,26 +2,165 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
     root: {
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundColor: '#EEEDE7',
     },
     firstSection:{
-        margin: '80px 00px 200px 00px',
+        margin: '0px 00px 50px 00px',
         [theme.breakpoints.down('xs')]: {
-            margin: '80px 00px 50px 00px',
+            margin: '0px 00px 50px 00px',
             
         },     
     },
+    
+    carItem1:{
+        backgroundImage: `url("/Images/phbworxpage.png")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: "left",
+        backgroundSize: 'cover',
+        height:'120vh',
+        backgroundColor:'#000090',
+        display:'flex',
+        padding: '0px 0px 20px 150px',
+        justifyContent:'flex-start',
+        alignItems: 'flex-end',
+        [theme.breakpoints.down('sm')]: {
+            padding: '0px 0px 20px 0px',
+            height:'95vh',
+            margin: '0px 00px 50px 0px',
+            justifyContent:'center',
+            alignItems: 'flex-end',
+        },   
+    },
+
+    carItem2:{
+        backgroundImage: `url("/Images/ebuddypage.png")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: "left",
+        backgroundSize: 'cover',
+        height:'120vh',
+        backgroundColor:'#000090',
+        display:'flex',
+        padding: '0px 0px 20px 150px',
+        justifyContent:'flex-start',
+        alignItems: 'flex-end',
+        [theme.breakpoints.down('sm')]: {
+            height:'95vh',
+            padding: '0px 0px 20px 0px',
+            margin: '0px 00px 50px 0px',
+            justifyContent:'center',
+            alignItems: 'flex-end',
+        },   
+    },
+
+    carItem3:{
+        backgroundImage: `url("/Images/pcmpage.png")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: "left",
+        backgroundSize: 'cover',
+        height:'120vh',
+        backgroundColor:'#000090',
+        display:'flex',
+        padding: '0px 0px 20px 150px',
+        justifyContent:'flex-start',
+        alignItems: 'flex-end',
+        [theme.breakpoints.down('sm')]: {
+            padding: '0px 0px 20px 0px',
+            height:'95vh',
+            margin: '0px 00px 50px 0px',
+            justifyContent:'center',
+            alignItems: 'flex-end',
+        },   
+    },
+
+
+
     secondSection:{
-        margin: '20px 0px 120px 0px'
+        margin: '20px 0px 20px 0px',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            justifyItems: 'center',
+            alignContents: 'center',
+        },   
+    },
+
+    boxItem:{
+        width: '30%',
+        borderRadius: '10px',
+        backgroundColor:'#fff',
+        margin: '10px',
+        padding: '20px 10px 20px 10px',
+        display: "flex",
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            width: '90%',
+            margin: '15px 5px',
+        },   
+    },
+    labelBox:{
+        marginLeft: "10px"
     },
     thirdSection:{
-        margin: '20px 0px 190px 0px'
+        overflow: 'hidden',
+        borderRadius: '20px',
+        padding: '80px',
+        [theme.breakpoints.down('sm')]: {
+            padding: '10px',
+        },  
+
+    },
+    featureItem:{
+        borderRadius: '10px',
+        backgroundImage: `url("/Images/thumbnailsample.png")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: "left",
+        backgroundSize: 'cover',
+        height:'100vh',
+        backgroundColor:'#000090',
+        display:'flex',
+        justifyContent:'flex-start',
+        padding: '0px 0px 10px 0px',
+        alignItems: 'flex-end',
+        [theme.breakpoints.down('sm')]: {
+            height:'95vh',
+            margin: '0px 00px 50px 00px',
+            justifyContent:'center',
+            alignItems: 'flex-end',
+        },   
+    },
+
+    featureItem1:{
+        borderRadius: '10px',
+        backgroundImage: `url("/Images/c2bpage.png")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: "left",
+        backgroundSize: 'cover',
+        height:'100vh',
+        backgroundColor:'#000090',
+        display:'flex',
+        
+        justifyContent:'flex-start',
+        padding: '0px 0px 20px 100px',
+        alignItems: 'flex-end',
+        [theme.breakpoints.down('sm')]: {
+            padding: '0px 0px 10px 0px',
+            height:'95vh',
+            margin: '0px 00px 50px 00px',
+            justifyContent:'center',
+            alignItems: 'flex-end',
+        },   
     },
 
     title: {
         display: "flex",
         flexDirection: "column",
-        alignContent: "center"
+        alignContent: "center",
+        
         
     },
     buttonBox:{
@@ -43,6 +182,7 @@ export default makeStyles((theme) => ({
        width: '30rem',
        height: "6rem",
        margin: '100px 20px 20px 20px',
+       borderRadius: '50px',
        [theme.breakpoints.down('sm')]: {
         margin: '5px 0px 20px 0px',
       },
@@ -51,120 +191,9 @@ export default makeStyles((theme) => ({
             height: "5.5rem",
         },    
     },
-    subtitleBox:{
-        display: "flex",
-        justifyContent:'center',
-        [theme.breakpoints.down('sm')]: {
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          },
-    },
-    subtitleItem:{
-        width: '47rem',
-        textAlign: "start",
-        margin: '50px 20px 20px 20px',
-        [theme.breakpoints.down('sm')]: {
-            width: "90%",
-          },
-    },
-    h1:{
-        fontSize: '16rem',
-        lineHeight:"16rem", 
-        alignSelf:"center", 
-        [theme.breakpoints.down('sm')]: {
-            lineHeight:"12rem", 
-            fontSize: '10rem',
-          },
-        [theme.breakpoints.down('xs')]: {
-            lineHeight:"7.0rem", 
-            fontSize: '4.6rem',
-        },
-    },
-    h2Box:{
-        margin: '25px auto 50px auto ',
-        textAlign: "center",
-        [theme.breakpoints.down('xs')]: {
-            margin: '25px 20px 20px 20px ',
-        },
-    },
-    h2:{
-        letterSpacing: "-0px",
-        fontWeight: 600,
-        [theme.breakpoints.down('sm')]: {
-            fontSize: '5rem',
-        },
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '3rem',
-        },
-    },
-    h4Box:{
-        
-        color: theme.palette.primary.main,
-        width: "80rem",
-        margin: '25px auto 50px auto ',
-        textAlign: "center",
-        [theme.breakpoints.down('xs')]: {
-            width: "90%",
-          },
-    },
-    h4num:{
-        fontSize: '4.5rem',
-        textAlign: 'center',
-    },
-    h41:{
-        letterSpacing: "-2px",
-        color: 'rgb(15, 15, 15)',
-        fontSize: '4.5rem',
-        textAlign: 'center',
-        [theme.breakpoints.down('xs')]: {
-            letterSpacing: "-2x",
-            fontSize: '3rem',
-          },
-    },
-    h42:{
-        letterSpacing: "-2x",
-        color: "#EC113EB3",
-        fontSize: '4.5rem',
-        textAlign: 'center',
-        [theme.breakpoints.down('xs')]: {
-            letterSpacing: "-2x",
-            fontSize: '3rem',
-          },
-    },
-    h43:{
-        letterSpacing: "-2px",
-        color: '#d4af37d5',
-        fontSize: '4.5rem',
-        textAlign: 'center',
-        [theme.breakpoints.down('xs')]: {
-            letterSpacing: "-2x",
-            fontSize: '3rem',
-          },
-    },
-    h6Box:{
-        width: "80rem",
-        margin: 'auto',
-        textAlign: "center",
-        [theme.breakpoints.down('sm')]: {
-            width: "60rem",
-          },
-        [theme.breakpoints.down('xs')]: {
-            width: "90%",
-          },
-    },
-    h5:{
-       
-        width: "80rem",
-        margin: 'auto auto 100px auto ',
-        textAlign: "center",
-        [theme.breakpoints.down('xs')]: {
-            width: "90%",
-          },
-    },
-    subtitle1:{
-        
-    },
+    
+   
+    
     video:{
         display: "flex",
         justifyContent:'center',
@@ -187,65 +216,8 @@ export default makeStyles((theme) => ({
           
         
     },
-    line1:{
-        width: '0px',
-         height: '170px' ,
-         border: '1px solid rgb(15, 15, 15)' ,
-         opacity: 1,
-         margin: 'auto',
-         borderTopLeftRadius: '100%',
-         borderTopRightRadius: '100%',
-         
-    },
-    line2:{
-        width: '0px',
-         height: '170px' ,
-         border: '1px solid #EC113EB3' ,
-         opacity: 1,
-         margin: 'auto',
-         borderTopLeftRadius: '100%',
-         borderTopRightRadius: '100%',
-         
-    },
-    line3:{
-        width: '0px',
-         height: '170px' ,
-         border: '1px solid #d4af37d5' ,
-         opacity: 1,
-         margin: 'auto',
-         borderTopLeftRadius: '100%',
-         borderTopRightRadius: '100%',
-         
-    },
     
-    circle1:{
-        width: '59px',
-        height: '58px',
-        background: 'transparent linear-gradient(292deg, rgb(15, 15, 15) 0%, #F2E2E2 100%) 0% 0% no-repeat padding-box',
-        borderRadius: '50%',
-        margin: 'auto',
 
-    },
-    circle2:{
-        width: '59px',
-        height: '58px',
-        background: 'transparent linear-gradient(292deg, #EC113E 0%, #F2E2E2 100%) 0% 0% no-repeat padding-box',
-        borderRadius: '50%',
-        margin: 'auto',
-
-    },
-    circle3:{
-        width: '59px',
-        height: '58px',
-        background: 'transparent linear-gradient(292deg, #d4af37d5 0%, #F2E2E2 100%) 0% 0% no-repeat padding-box',
-        borderRadius: '50%',
-        margin: 'auto',
-
-    },
-    logoImage:{
-        width: '300px',
-        margin: '60px auto 10px auto'
-    }
     
    
 

@@ -230,7 +230,7 @@ function AuthContextProvider(props) {
       // let jwt = ""
       console.log(AuthContext)
 
-      if(form.FirstName.length <= 2 || form.LastName.length <= 2){
+      if(form.FirstName.length <= 1 || form.LastName.length <= 1){
           return handleToaster("Your Name is Invalid","warning");
       }
       if(form.Contact.length <= 9){
@@ -239,13 +239,13 @@ function AuthContextProvider(props) {
       if(!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form.Email))){
           return handleToaster("Your Email is Invalid","warning");
       }
-      if(form.Username.length <= 5 || form.Ranking.length <= 2){
+      if(form.Username.length <= 2 || form.Ranking.length <= 2){
           return handleToaster("Your PHB Account is Invalid","warning");
       }
-      if (form.Password.length <= 4  || form.Password !== form.PasswordConfirm){
+      if (form.Password.length <= 3  || form.Password !== form.PasswordConfirm){
           return handleToaster("Your Password in not the same","warning");
       }
-      if(form.Purpose.length <= 5){
+      if(form.Purpose.length <= 4){
         return handleToaster("Tell us WHY you're joining?","warning");
       }
       if(form.PCMupline.length <= 2 || form.Sponsor.length <= 2){

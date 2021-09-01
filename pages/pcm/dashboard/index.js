@@ -43,7 +43,7 @@ export default function Dashboard () {
                     <title>DASHBOARD - PCM JOURNEY ONLINE CLASS</title>
                 </Head>
                 <Header1/>
-                <div  item md={12} style={{padding: '50px 0px 0px 0px' , width: '100%' ,  display:'flex' , justifyContent: 'center', textAlign: 'center'}}>
+                <div  md={12} style={{padding: '50px 0px 0px 0px' , width: '100%' ,  display:'flex' , justifyContent: 'center', textAlign: 'center'}}>
                        
                     <Typography variant='h3' color='primary'  ><b>Dashboard </b></Typography>
                 </div>

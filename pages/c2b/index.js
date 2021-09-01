@@ -64,7 +64,7 @@ export default function C2B() {
 
 
   function showPosition(position) {
-    setForm({...form , geocode: `{latitude:${position.coords.latitude}, longitude:${position.coords.longitude}}`})
+    setForm({...form , geocode: `{"latitude":${position.coords.latitude}, "longitude":${position.coords.longitude}}`})
   }
   const handleClose = () => {
     setOpen(false);

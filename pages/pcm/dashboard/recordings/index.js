@@ -16,6 +16,9 @@ import  Link  from 'next/link';
 import moment from 'moment';
 import config from '@/config/configuration';
 
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
+
 import Head from 'next/head'
 import {AuthContext} from '@/context/context';
 import { useRouter } from 'next/router'
@@ -39,6 +42,21 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             width: "95%",
           },
+    },
+    backBox:{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+        },   
+    },
+    back:{
+        fontSize: '50px',
+        color: theme.palette.primary.main,
+        [theme.breakpoints.down('xs')]: {
+            fontSize:'30px'
+        },    
     },
    
  }));
@@ -73,8 +91,16 @@ export default function Watch() {
             <Head>
                 <title>PCM ONLINE RECORDINGS</title>
             </Head>
+            <div className={classes.backBox} >
+                <Link href='/pcm/dashboard'>
+                    <IconButton>
+                        <ArrowBackIcon className={classes.back} />
+                    </IconButton>
+                </Link>
+            </div>
             {video.map((vid, index)=>{
                 return (
+                    
                     <Card key={index} className={classes.cardroot}>
                                 
                                     <CardContent>
