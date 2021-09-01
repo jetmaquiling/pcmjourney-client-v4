@@ -96,9 +96,14 @@ export default function C2B() {
   React.useEffect(() => {
     async function getLink() { 
         const {data} = await axios.get(`${config.SERVER_URL}/linkfunnels?slug=${router.query.id}`);
-        // if(!data[0]){
-        //    router.push("/c2b")
-        // }
+        try{
+            if(!data[0].users_permissions_user.id){
+                router.push("/c2b")
+             }
+        }catch(error){
+            console.log(error)
+        }
+        
         
         try{
             setPicture(data[0].profilepicture.url);
