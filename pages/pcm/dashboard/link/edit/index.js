@@ -129,15 +129,12 @@ export default function LinkEdit () {
     
 
     React.useEffect(() => {
-        if(!ctx.getCookie('isLoggedIn')){
-            router.push("/pcm/login")
-        }else{
+      
             try{
-                if(ctx.user.linkfunnels.length === 0){
+                if(!ctx.user.linkfunnels[0]){
                     setLink(true)
-                    
+                    console.log(ctx.user.linkfunnels)
                 }else{
-                    setLink(false)
                     console.log(ctx.user.linkfunnels[0].profilepicture)
                     dispatch({type:"ONCHANGE", field: "firstname", payload: ctx.user.linkfunnels[0].firstname});
                     dispatch({type:"ONCHANGE", field: "lastname", payload: ctx.user.linkfunnels[0].lastname});
@@ -150,19 +147,16 @@ export default function LinkEdit () {
                     dispatch({type:"ONCHANGE", field: "ebuddy", payload: ctx.user.linkfunnels[0].ebuddy});
                     dispatch({type:"ONCHANGE", field: "username", payload: ctx.user.linkfunnels[0].username});
                     dispatch({type:"ONCHANGE", field: "profilepicturepreview", payload: ctx.user.linkfunnels[0].profilepicture.url});
+                    setLink(false)
                 }
-            }catch{
+            }catch(error){
+                console.log(error)
                 setLink(true)
             }
-        }
         
-      },[ctx]);
+      },[ctx.user.linkfunnels]);
 
-    if(link){
-        return ( 
-            <LinkCreate/>
-        )
-    }else{
+
         return (<div className={classes.root} >
             <Head>
                     <title>Link Booter Edit Information</title>
@@ -206,5 +200,5 @@ export default function LinkEdit () {
             </div>
 
         </div>
-    )}
+    )
 }

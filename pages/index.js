@@ -39,8 +39,8 @@ export default function LandingPage () {
           <div className={classes.firstSection} >
             <Carousel
             swiping
-            // autoplay={true}
-            // autoplayInterval={2000}
+            autoplay={true}
+            autoplayInterval={2000}
             dragging
               renderCenterLeftControls={({ previousSlide }) => (
                 <IconButton onClick={previousSlide}><ArrowBackIosIcon style={{color:"#fff"}}/></IconButton>
@@ -110,8 +110,8 @@ export default function LandingPage () {
           <div className={classes.thirdSection} >
             <Carousel
             swiping
-            // autoplay={true}
-            // autoplayInterval={3000}
+            autoplay={true}
+            autoplayInterval={2000}
             dragging
               renderCenterLeftControls={({ previousSlide }) => (
                 <IconButton onClick={previousSlide}><ArrowBackIosIcon style={{color:"#fff"}}/></IconButton>

@@ -89,7 +89,7 @@ export default function LinkDashboard () {
                 
                 <LinkCard
                     thumbnail="/Images/background.jpg"
-                    link={`https://jetzrecords.com/c2b/${code}`}
+                    link={`https://testlinkbooster.netlify.app/${code}`}
                     code={code}
                     title='C2B Plan'
                     slug="c2b"

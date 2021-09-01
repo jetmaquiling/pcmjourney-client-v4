@@ -96,16 +96,26 @@ export default function C2B() {
   React.useEffect(() => {
     async function getLink() { 
         const {data} = await axios.get(`${config.SERVER_URL}/linkfunnels?slug=${router.query.id}`);
-        if(!data[0]){
-            console.log(data)
-        }
+        // if(!data[0]){
+        //    router.push("/c2b")
+        // }
         
         try{
-            console.log(data[0].notification)
             setPicture(data[0].profilepicture.url);
-            setToken(data[0].users_permissions_user.id)
+        }catch(error){
+            console.log(error)
+            setPicture("https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401452/thumbnailsample_8aae97e6c8.png");
+        }
+
+        try{
             setNotification(data[0].notification)
-            setUser(...data)
+        }catch{
+            setNotification('none')
+        }
+
+        try{
+            setToken(data[0].users_permissions_user.id)
+            setUser(...data);
         }catch(error){
             console.log(error)
         }

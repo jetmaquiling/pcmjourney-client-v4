@@ -115,7 +115,7 @@ export default function LinkCard({thumbnail="/Images/background.jpg",link='No li
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent style={{padding: "10px"}}>
           
-            <Button variant="contained" fullWidth style={{backgroundColor: '#4267B2', margin: '5px 0px'}} href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fjetzrecords.com%2F${slug}%2f${code}%2f`}>
+            <Button variant="contained" fullWidth style={{backgroundColor: '#4267B2', margin: '5px 0px'}} href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ftestlinkbooster.netlify.app%2F${slug}%2f${code}%2f`}>
                 <FacebookIcon color="secondary"/>
                 <Typography variant="body2" style={{fontWeight: 700, lineHeight: '22px', color:'#fff', margin: '0px 10px'}}>
                    Share in Facebook
