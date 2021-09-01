@@ -89,7 +89,7 @@ export default function LinkDashboard () {
                 
                 <LinkCard
                     thumbnail="/Images/background.jpg"
-                    link={`https://testlinkbooster.netlify.app/${code}`}
+                    link={`https://testlinkbooster.netlify.app/c2b/${code}`}
                     code={code}
                     title='C2B Plan'
                     slug="c2b"
@@ -97,6 +97,18 @@ export default function LinkDashboard () {
                     description="Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
                     target="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
                     information="Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                />
+
+                <LinkCard
+                    thumbnail="/Images/background.jpg"
+                    link={`https://testlinkbooster.netlify.app/booster/${code}`}
+                    code={code}
+                    title='Booster Plan'
+                    slug="booster"
+                    author="PHBWorx International"
+                    description="Booster is reall for you to try! Ask me Why?"
+                    target="Those prospects who are willing to start building their big cummunity!"
+                    information="This is a test page, all booster information is here!"
                 />
 
               

@@ -31,11 +31,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   });
 
 
-export default function C2B() {
+export default function BoosterID() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const router = useRouter();
-  const [form, setForm] = React.useState({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: ''})
+  const [form, setForm] = React.useState({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: 'Booster'})
   const [user , setUser] = React.useState({});
   const [picture, setPicture] = React.useState('');
   const [token, setToken] = React.useState('');
@@ -73,7 +73,7 @@ export default function C2B() {
                 to: notification,
                 data: {extra: "Some Data"},
                 title: `Hey ${user.firstname}! ,New Prospect Is Added In Your List, Check It Out!`,
-                body: `Prospect name is ${form.firstname},very interested in C2B, Click here to view your new prospect and start marketing!!!`,
+                body: `Prospect name is ${form.firstname}, very interested in Booster, Click here to view your new prospect and start marketing!!!`,
             })
         }).catch(error=>{
             router.push("/")
@@ -132,23 +132,23 @@ export default function C2B() {
 
     if(!token){
         return (<div><Head>
-            <title>BYOB Build Your Online Business by Eduard Reformina</title>
-            <meta property="og:type"   content="website" />
-            <meta property="og:title" content="BYOB Build Your Online Business by Eduard Reformina"/>
-            <meta property="og:description"  content="THIS IS A TEST PAGE PLACE ANYTHING HERE!" />
-            <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401452/thumbnailsample_8aae97e6c8.png' key="ogimage" />
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            <title>THIS IS BOOSTER PAGE</title>
+                <meta property="og:type"   content="website" />
+                <meta property="og:title" content="BYOB Build Your Online Business"/>
+                <meta property="og:description"  content="Booster is really for you to try! Ask me Why?" />
+                <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401996/thumbnailsample_8aae97e6c8.png' key="ogimage" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         </Head></div>)
     }
 
   return (
       <div className={classes.root}  >
             <Head>
-                <title>BYOB Build Your Online Business by Eduard Reformina</title>
+                <title>THIS IS BOOSTER PAGE</title>
                 <meta property="og:type"   content="website" />
-                <meta property="og:title" content="BYOB Build Your Online Business by Eduard Reformina"/>
-                <meta property="og:description"  content="THIS IS A TEST PAGE PLACE ANYTHING HERE!" />
-                <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401452/thumbnailsample_8aae97e6c8.png' key="ogimage" />
+                <meta property="og:title" content="BYOB Build Your Online Business"/>
+                <meta property="og:description"  content="Booster is really for you to try! Ask me Why?" />
+                <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401996/thumbnailsample_8aae97e6c8.png' key="ogimage" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
@@ -171,6 +171,17 @@ export default function C2B() {
                         value={form.firstname}
                         variant="outlined"
                     />
+                    <Typography variant="h6" className={classes.modalLabel} >Last Name</Typography>
+                    <TextField
+                        className={classes.modalField} 
+                        autoFocus
+                        id="name"
+                        type="name"
+                        fullWidth
+                        onChange={(e)=>{setForm({...form, lastname: e.target.value})}}
+                        value={form.lastname}
+                        variant="outlined"
+                    />
                     <Typography variant="h6" className={classes.modalLabel}  >Email Address</Typography>
                     <TextField
                         id="name"
@@ -178,6 +189,17 @@ export default function C2B() {
                         fullWidth
                         onChange={(e)=>{setForm({...form, email: e.target.value})}}
                         value={form.email}
+                        variant="outlined"
+                    />
+                    <Typography variant="h6" className={classes.modalLabel} >Contact</Typography>
+                    <TextField
+                        className={classes.modalField} 
+                        autoFocus
+                        id="name"
+                        type="name"
+                        fullWidth
+                        onChange={(e)=>{setForm({...form, contact: e.target.value})}}
+                        value={form.contact}
                         variant="outlined"
                     />
                     <Button className={classes.button} style={{width: '100%', marginTop:"20px"}} onClick={()=>handleSubmit(form)}>

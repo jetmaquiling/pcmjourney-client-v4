@@ -128,13 +128,15 @@ export default function LandingPage () {
                     <Button variant="outlined" style={{color:'#000', border: '3px solid #000'}}   className={classes.appButton} >
                            <Typography variant="body1">Learn More</Typography>
                     </Button>
-                  </Link>
-                    
+                    </Link>
+
                 </div>
-                <div className={classes.featureItem}>
-                    <Button variant="outlined" color="secondary" className={classes.appButton} >
-                           <Typography variant="body1">Learn More</Typography>
-                    </Button>
+                <div className={classes.featureItem2}>
+                    <Link href="/booster">
+                      <Button variant="outlined" color="secondary" className={classes.appButton} >
+                            <Typography variant="body1">Learn More</Typography>
+                      </Button>
+                    </Link>
                 </div>
                 <div className={classes.featureItem}>
                     <Button variant="outlined" color="secondary" className={classes.appButton} >

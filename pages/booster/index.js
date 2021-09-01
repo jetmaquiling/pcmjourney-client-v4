@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react'
@@ -22,33 +21,33 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+
 import axios from 'axios';
 import config from '@/config/configuration.json';
 import {useRouter} from 'next/router';
+
+
+
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
 
 
-export default function C2B() {
+export default function Booster() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [form, setForm] = React.useState({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: 'Booster'})
   const router = useRouter();
-  const [form, setForm] = React.useState({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: ''})
-  const [user , setUser] = React.useState({});
-  const [picture, setPicture] = React.useState('');
-  const [token, setToken] = React.useState('');
-  const [notification, setNotification] = React.useState('');
 
   const handleClickOpen = () => {
-    console.log(user);
     setOpen(true);
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
       }
     
   };
+
 
   const handleSubmit = (form) => {
     axios.post(`${config.SERVER_URL}/prospects`,{
@@ -58,32 +57,11 @@ export default function C2B() {
         contact: form.contact,
         geocode: form.geocode,
         notification: form.notification,
-        interest: form.interest,
-        users_permissions_user: token,
+        interest: form.interest
     }).then(response => {
-
-        fetch("https://exp.host/--/api/v2/push/send", {
-            'mode': 'no-cors',
-            'method': 'POST',
-            'headers': {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body:  JSON.stringify({
-                to: notification,
-                data: {extra: "Some Data"},
-                title: `Hey ${user.firstname}! ,New Prospect Is Added In Your List, Check It Out!`,
-                body: `Prospect name is ${form.firstname},very interested in C2B, Click here to view your new prospect and start marketing!!!`,
-            })
-        }).catch(error=>{
-            router.push("/")
-        })
         router.push("/")
-      
     })
 };
-
-
 
 
   function showPosition(position) {
@@ -93,62 +71,18 @@ export default function C2B() {
     setOpen(false);
   };
 
-  React.useEffect(() => {
-    async function getLink() { 
-        const {data} = await axios.get(`${config.SERVER_URL}/linkfunnels?slug=${router.query.id}`);
-        try{
-            if(!data[0].users_permissions_user.id){
-                router.push("/c2b")
-             }
-        }catch(error){
-            console.log(error)
-        }
-        
-        
-        try{
-            setPicture(data[0].profilepicture.url);
-        }catch(error){
-            console.log(error)
-            setPicture("https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401452/thumbnailsample_8aae97e6c8.png");
-        }
 
-        try{
-            setNotification(data[0].notification)
-        }catch{
-            setNotification('none')
-        }
 
-        try{
-            setToken(data[0].users_permissions_user.id)
-            setUser(...data);
-        }catch(error){
-            console.log(error)
-        }
-       
-    }
-    getLink()
 
-    }, [router.query.id])
-
-    if(!token){
-        return (<div><Head>
-            <title>BYOB Build Your Online Business by Eduard Reformina</title>
-            <meta property="og:type"   content="website" />
-            <meta property="og:title" content="BYOB Build Your Online Business by Eduard Reformina"/>
-            <meta property="og:description"  content="THIS IS A TEST PAGE PLACE ANYTHING HERE!" />
-            <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401452/thumbnailsample_8aae97e6c8.png' key="ogimage" />
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        </Head></div>)
-    }
 
   return (
       <div className={classes.root}  >
             <Head>
-                <title>BYOB Build Your Online Business by Eduard Reformina</title>
+                <title>THIS IS BOOSTER PAGE</title>
                 <meta property="og:type"   content="website" />
-                <meta property="og:title" content="BYOB Build Your Online Business by Eduard Reformina"/>
-                <meta property="og:description"  content="THIS IS A TEST PAGE PLACE ANYTHING HERE!" />
-                <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401452/thumbnailsample_8aae97e6c8.png' key="ogimage" />
+                <meta property="og:title" content="BYOB Build Your Online Business"/>
+                <meta property="og:description"  content="Booster is really for you to try! Ask me Why?" />
+                <meta property="og:image" content='https://res.cloudinary.com/dnclv0tnh/image/upload/v1630401996/thumbnailsample_8aae97e6c8.png' key="ogimage" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
@@ -171,6 +105,17 @@ export default function C2B() {
                         value={form.firstname}
                         variant="outlined"
                     />
+                    <Typography variant="h6" className={classes.modalLabel} >Last Name</Typography>
+                    <TextField
+                        className={classes.modalField} 
+                        autoFocus
+                        id="name"
+                        type="name"
+                        fullWidth
+                        onChange={(e)=>{setForm({...form, lastname: e.target.value})}}
+                        value={form.lastname}
+                        variant="outlined"
+                    />
                     <Typography variant="h6" className={classes.modalLabel}  >Email Address</Typography>
                     <TextField
                         id="name"
@@ -180,11 +125,22 @@ export default function C2B() {
                         value={form.email}
                         variant="outlined"
                     />
+                    <Typography variant="h6" className={classes.modalLabel} >Contact Name</Typography>
+                    <TextField
+                        className={classes.modalField} 
+                        autoFocus
+                        id="name"
+                        type="tel"
+                        fullWidth
+                        onChange={(e)=>{setForm({...form, contact: e.target.value})}}
+                        value={form.contact}
+                        variant="outlined"
+                    />
                     <Button className={classes.button} style={{width: '100%', marginTop:"20px"}} onClick={()=>handleSubmit(form)}>
                         <div className={classes.buttonBox}>
                         <div className={classes.buttonUp}>
                             <ArrowForwardIcon color="secondary" className={classes.buttonIcon} />
-                            <Typography variant="h3" color="secondary" className={classes.buttonText} >SUBMIT</Typography>
+                            <Typography variant="h3" color="secondary" className={classes.buttonText} >Click Here To Register</Typography>
                         </div>
                             <Typography color="secondary" className={classes.buttonSubText}  variant="body2">This Training will Start Soon! Register Now</Typography>
                         </div> 
@@ -242,7 +198,7 @@ export default function C2B() {
                                 </Button>
                                 
                                 <div className={classes.imageBox}>
-                                    <Image alt="Image" src={picture} height={900} width={1200}/>
+                                    <Image alt="Image" src={'/Images/image.jpg'} height={900} width={1200}/>
                                 </div>
                                 
                                 <div className={classes.countdownBox}>
@@ -354,13 +310,13 @@ export default function C2B() {
                     </div>
 
                 </div>
-                <Button className={classes.button}   href={`tel:${user.contact}`}>
+                <Button className={classes.button}  onClick={handleClickOpen}>
                     <div className={classes.buttonBox}>
                     <div className={classes.buttonUp}>
                         <ArrowForwardIcon color="secondary" className={classes.buttonIcon} />
-                        <Typography variant="h3" color="secondary" className={classes.buttonText} >CALL {user.contact}</Typography>
+                        <Typography variant="h3" color="secondary" className={classes.buttonText} >Click Here To Register</Typography>
                     </div>
-                        <Typography color="secondary" className={classes.buttonSubText}  variant="body2">Let's Get Personal, Click Here To Call.</Typography>
+                        <Typography color="secondary" className={classes.buttonSubText}  variant="body2">This Training will Start Soon! Register Now</Typography>
                     </div>
                     
                                     

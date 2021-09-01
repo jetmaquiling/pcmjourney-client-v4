@@ -156,6 +156,28 @@ export default makeStyles((theme) => ({
         },   
     },
 
+    featureItem2:{
+        borderRadius: '10px',
+        backgroundImage: `url("/Images/boosterpage.png")`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: "left",
+        backgroundSize: 'cover',
+        height:'100vh',
+        backgroundColor:'#000090',
+        display:'flex',
+        
+        justifyContent:'flex-start',
+        padding: '0px 0px 20px 100px',
+        alignItems: 'flex-end',
+        [theme.breakpoints.down('sm')]: {
+            padding: '0px 0px 10px 0px',
+            height:'95vh',
+            margin: '0px 00px 50px 00px',
+            justifyContent:'center',
+            alignItems: 'flex-end',
+        },   
+    },
+
     title: {
         display: "flex",
         flexDirection: "column",
