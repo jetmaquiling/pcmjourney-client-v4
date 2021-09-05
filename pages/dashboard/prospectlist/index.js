@@ -35,9 +35,12 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import Head from 'next/head'
 import moment from 'moment';
 import { useRouter } from 'next/router'
-
+import Login from '../../login/index';
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -114,12 +117,11 @@ export default function ProspectList() {
     const ctx = useContext(AuthContext);
     const [success, setSuccess] = React.useState(true)
     const [form, setForm] = React.useState({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: ''});
-
    
 
     useEffect(() => {
        
-        console.log("GETING NEW PRSOPECT")
+        console.log(ctx.user)
         async function persist(jwt) { 
             //console.log("Persisting Log")
               const {data} = await axios.get(`${config.SERVER_URL}/users/${ctx.getCookie('id')}`, {
@@ -128,9 +130,9 @@ export default function ProspectList() {
               const json = await data;
               // setCookie('token',json.jwt,7);
               // console.log('success LogIn', data);
-              ctx.setUser(data);
+              ctx.setUser(json);
               try{
-                ctx.setUser({...data, ProfilePicture : data.ProfilePicture.url})
+                ctx.setUser({...json, ProfilePicture : json.ProfilePicture.url})
               }catch(error){
                 // console.log('No Profile Picture')
               }
@@ -139,16 +141,13 @@ export default function ProspectList() {
               // console.log('success LogIn', json.user);
       
           }
-          if(!ctx.loggedIn){
-            router.push("/pcm/login")
-        }else{
-            persist(ctx.getCookie('token'));
-        }
+          persist(ctx.getCookie('token'));
        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [success])
 
     async function addProspect () {
+        
         if(form.firstname.length <= 5 || form.lastname.length <= 5 ){
             return ctx.handleToaster("Atleast add The First Name and Last Name", "warning");
         }
@@ -190,7 +189,13 @@ export default function ProspectList() {
     })
     }
     
-    
+    if(!ctx.stateAuthenticated){
+        return (
+            <div >
+                <Login/>
+            </div>
+        )
+    }
 
 
 
@@ -203,7 +208,7 @@ export default function ProspectList() {
             </Head>
             
             <div className={classes.backBox} >
-                <Link href='/pcm/dashboard'>
+                <Link href='/dashboard'>
                     <IconButton>
                         <ArrowBackIcon className={classes.back} />
                     </IconButton>
@@ -325,6 +330,10 @@ export default function ProspectList() {
             </div>
              <Grid container className={classes.box}>
                     {ctx.user.prospects && ctx.user.prospects.map((person, index) => {
+                        let location = {};
+                        if(!person.geocode == "" ){
+                            location = JSON.parse(person.geocode)
+                        }
                         return(
                             <Grid key={index} item md={6}  xs={12} className={classes.itemBox}>
                                 <Accordion>
@@ -338,7 +347,7 @@ export default function ProspectList() {
                                             aria-label="Acknowledge"
                                             onClick={(event) => event.stopPropagation()}
                                             onFocus={(event) => event.stopPropagation()}
-                                            control={<Checkbox color="primary" checked={false} />}
+                                            control={<PermIdentityIcon color="primary" checked={false} />}
                                             label={`${person.firstname} ${person.lastname}`}
                                         />
                                     </AccordionSummary>
@@ -384,14 +393,24 @@ export default function ProspectList() {
                                             <Typography color='primary' variant='h6'>
                                                 Geolocation: 
                                             </Typography>
+                                            {person.geocode == "" ? 
                                             <Typography variant='body1'>
-                                                {person.geocode == "" ? "n/a" : person.geocode}
-                                            </Typography>
+                                                No Location
+                                             </Typography>
+                                            :  
+                                             <iframe
+                                             style={{width:"100%"}}
+                                             height="350"
+                                             src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyD7A5RarKPK5TNkkwI6UcgbyAqEgGxyApU
+                                                 &q=${location.latitude},${location.longitude}`}>
+                                             </iframe>
+                                            }
+                                        
                                             <br/>
                                             
                         
                                             <div className={classes.detailsButton}>
-                                                    <IconButton style={{ padding: '2px'}}  href={`tel:${person.contact}`} color="primary" onClick={()=>{ctx.setModal({open:true, title: "Are You sure You want to permanently delete this user?",message: '', function: () => deleteProspect(person.id) }) } }>
+                                                    <IconButton style={{ padding: '2px'}}  color="primary" onClick={()=>{ctx.setModal({open:true, title: "Are You sure You want to permanently delete this user?",message: '', function: () => deleteProspect(person.id) }) } }>
                                                         <DeleteForeverIcon style={{fontSize: '30px'}}/>
                                                     </IconButton>
                                                 <div>

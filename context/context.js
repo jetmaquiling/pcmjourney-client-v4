@@ -5,10 +5,17 @@ import moment from 'moment';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
 import Image from 'next/image';
+import Loader from '@/components/caveats/load';
 
 ////////////////////////////////////////////////////////
 
 export const AuthContext = React.createContext({
+    page: 'Default',
+    serverConnection: true,
+    loading: false,
+    authenticate: () => {},
+    stateAuthenticated: false,
+    cookieAuthenticated: false,
     logIn: (email,password)=> {},
     logOut: () => {},
     signUp: (form)=> {},
@@ -26,7 +33,6 @@ export const AuthContext = React.createContext({
     setModal:  ()=> {},
     handleToaster: (message, status) => {},
     handleClose: (event, reason) => {},
-    loggedIn: null,
     getCookie: (cname) => {},
     setCookie: (cname,value,time) => {},
     user: {},
@@ -42,9 +48,9 @@ export const AuthContext = React.createContext({
 
 function AuthContextProvider(props) {
     //MAIN COOKIE STORE
+    const [page, setPage] = React.useState("Dashboard");
     const [user, setUser] = React.useState({id: null});
     const [PCMday ,setPCMDay] = React.useState("");
-    const [loggedIn, setLoggedIn] = React.useState(false);
     const [terms, setTerms] = React.useState(false);
     const [load, setLoad] = React.useState(false);
     const [toaster, setToaster] = React.useState({open:false, message: '', status: 'error'});
@@ -54,53 +60,119 @@ function AuthContextProvider(props) {
     const [events, setEvents] = React.useState({PCMdate: moment()});
     const [videos, setVideos] =  React.useState([]);
     const [live, setLive] = React.useState(false);
+    const [stateAuthenticated, setStateAuthenticated] = React.useState(false);
+    const [cookieAuthenticated, setCookieAuthenticated] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
+    const [serverConnection, setServerConnection] = React.useState(true);
     //LOG IN PERSIST
     const router = useRouter()
 
     React.useEffect(() => {
-
-      async function persist(jwt) { 
-        
-          try{
-            const {data} = await axios.get(`${config.SERVER_URL}/users/${getCookie('id')}`, {
-              headers: { Authorization: `Bearer ${jwt}` }
-              });
-            setCookie('isLoggedIn','true',30);    
-            setUser(data)
-            try{
-              setUser({...data, ProfilePicture : data.ProfilePicture.url})
-            }catch(error){
-              // console.log('No Profile Picture')
-            }
+      authenticate();
+      // async function persist(jwt) { 
+          
+      //     try{
+      //       const {data} = await axios.get(`${config.SERVER_URL}/users/${getCookie('id')}`, {
+      //         headers: { Authorization: `Bearer ${jwt}` }
+      //         });
+      //       setCookie('isLoggedIn','true',30);    
+      //       setUser(data)
+      //       try{
+      //         setUser({...data, ProfilePicture : data.ProfilePicture.url})
+      //       }catch(error){
+      //         // console.log('No Profile Picture')
+      //       }
             
-            getPCMDay(data.startJourney)
-            setLoggedIn(true);
-            setLive(true);
-          }catch(error){
-            console.log('Context ERROR')
-            console.log(error)
-            // setCookie('isLoggedIn','false',0);
-            // setCookie('token','',0);  
-            // window.location.replace("/")
-            // setLoggedIn(true);
-          }
+      //       getPCMDay(data.startJourney)
+      //       setLoggedIn(true);
+      //       setLive(true);
+      //       setStateAuthenticated(true)
+
+      //     }catch(error){
+      //       console.log('Context ERROR')
+      //       console.log(error)
+      //       // setCookie('isLoggedIn','false',0);
+      //       // setCookie('token','',0);  
+      //       // window.location.replace("/")
+      //       // setLoggedIn(true);
+      //     }
          
-      }
+      // }
       
 
-      if(getCookie('isLoggedIn') === "true" ){
-        //console.log(getCookie('token'));
-        persist(getCookie('token'));
+      // if(getCookie('isLoggedIn') === "true" ){
+      //   console.log(getCookie('token'));
+      //   persist(getCookie('token'));
         
        
         
-      }
+      // }
       getEvents();
       
     },[]);
    
+    //Authentication SYSTEM~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    async function  authenticate(){
+      //Start Load Up
+      //Verify If already loggedIn
+      setLoading(true);
+      if(!stateAuthenticated){
+        console.log("not yet stateAuthenticated meaning you are coming from a different Site or just Reloading")
+        //If not yet stateAuthenticated meaning you are coming from a different Site or just Reloading
+        if(getCookie('isLoggedIn') === "true"){
+            axios.get(`${config.SERVER_URL}/users/${getCookie('id')}`, {
+            headers: { Authorization: `Bearer ${getCookie('token')}` }
+            }).then(res=>{
+              setUser(res.data)
+              console.log(res)
+              try{
+                setUser({...res.data, ProfilePicture : res.data.ProfilePicture.url})
+              }catch(error){
+                // console.log('No Profile Picture')
+              }
+              getPCMDay(res.data.startJourney)
+              setLive(true);
+              setStateAuthenticated(true)
+              setLoading(false);
+              console.log("Working And Cookie Approved")
+            }).catch(error=>{
+              //if Cookie is Invalid Delete All Cookie and Restart to Login  
+              if(error.message === "Request failed with status code 401"){
+                setLoading(false);
+                setCookie('token','',0);
+                setCookie('id','',0);
+                setCookie('isLoggedIn','false',0);
+                router.push('/')
+              }else{
+                setLoading(false);
+                setServerConnection(false)
+              }
+              console.log(error)
 
-    
+            })
+            
+        }else{
+          setLoading(false);
+          return 
+        }
+      }else{
+        //stateAuthenticated already return to flow
+        setLoading(false);
+        return 
+      }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     //TOASTER FUNCTION
     const handleToaster = (message, status = "error") => {
       console.log(message)
@@ -139,9 +211,9 @@ function AuthContextProvider(props) {
           axios.get(`${config.SERVER_URL}/events`).then(res => {
             setEvents(res.data);
             console.log('success LogIn', res.data);
-            setLive(true);
           }).catch(error=> {
             console.log(error)
+            setServerConnection(false)
           })
       }
 
@@ -192,19 +264,27 @@ function AuthContextProvider(props) {
             setCookie('token',json.jwt,30);
             setCookie('id',json.user.id,30);
             setCookie('isLoggedIn','true',30);
+            setStateAuthenticated(true);
             // console.log('success LogIn', json);
-            setUser(json.user)
-            setLoggedIn(true)
+
             setLoad(false)
-            window.location.replace("/pcm/dashboard");
+            authenticate();
+            
             
             // console.log('success LogIn', json.user);
             
 
         }catch(error){
-            setLoad(false)
-            console.log(error.message)
-            handleToaster("Your Credentials Are Incorrect!" ,'error')
+            if(error.message === "Request failed with status code 400"){
+              setLoad(false)
+              console.log(error.message)
+              handleToaster("Your Credentials Are Incorrect!" ,'error')
+            }else{
+              setLoad(false)
+              console.log(error.message)
+              handleToaster("Server Down, Please Try Again Later" ,'error')
+            }
+            
             
         }
     
@@ -218,7 +298,8 @@ function AuthContextProvider(props) {
         setCookie('token','',0);
         setCookie('id','',0);
         setCookie('isLoggedIn','false',0);
-        window.location.replace("/");
+        setStateAuthenticated(false);
+        router.push('/login')
     }
      
 
@@ -362,12 +443,15 @@ function AuthContextProvider(props) {
   }
 
 
-
-  if(live){
+  if(!loading){
     return <AuthContext.Provider 
     value={{
+        serverConnection: serverConnection,
+        loading: loading,
+        authenticate: authenticate,
+        cookieAuthenticated: cookieAuthenticated,
+        stateAuthenticated: stateAuthenticated,
         user: user,
-        loggedIn: loggedIn,
         logIn: logIn,
         logOut: logOut,
         signUp: signUp,
@@ -399,49 +483,7 @@ function AuthContextProvider(props) {
       {props.children}
   </AuthContext.Provider>
   }else{
-    return (
-        <div style={{visibility: "hidden"}}>
-            <AuthContext.Provider 
-                value={{
-                    user: user,
-                    loggedIn: loggedIn,
-                    logIn: logIn,
-                    logOut: logOut,
-                    events: events,
-                    signUp: signUp,
-                    success: success,
-                    setSuccess: setSuccess,
-                    checked: checked,
-                    setChecked: setChecked,
-                    load: load,
-                    terms: terms,
-                    setTerms: setTerms,
-                    setLoad: setLoad,
-                    toaster: toaster,
-                    setToaster: setToaster,
-                    handleToaster: handleToaster,
-                    handleClose: handleClose,
-                    modal: modal,
-                    setModal:  setModal,
-                    getCookie: getCookie,
-                    setCookie: setCookie,
-                    getEvents: getEvents,
-                    setUser: setUser,
-                    videos: videos,
-                    PCMday: PCMday,
-                    live: live,
-                }}
-                
-              >
-                  {props.children}
-              </AuthContext.Provider>
-        </div>
-      //   <div style={{ width: '100%',height: '100vh',display: 'flex',textAlign: 'center',justifyContent: 'center',flexDirection: 'column',alignItems: 'center',
-      //  }}>
-      //       <Link href="/" ><a><Image alt="logo" src={"/Images/PCM Black.png"} height={120} width={120}/></a></Link>
-      //   </div>
-    )
-   
+    return <Loader/>
   }
   
 

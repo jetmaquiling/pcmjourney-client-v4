@@ -18,7 +18,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import config from '@/config/configuration.json';
 import axios from 'axios';
-
+import Login from '../../../login/index'
 
 const initialState = {
     firstname: '',
@@ -91,28 +91,33 @@ export default function LinkEdit () {
         }, {
             headers: { Authorization: `Bearer ${ctx.getCookie('token')}` }
             }).then(res => {
-                axios.delete(`${config.SERVER_URL}/upload/files/${ctx.user.linkfunnels[0].profilepicture.id}`).then(res=> console.log(res))
-                const formData = new FormData()
-                formData.append('files', state.profilepicture);
-                formData.append('ref', 'linkfunnel');
-                formData.append('refId', res.data.id);
-                formData.append('field', 'profilepicture');
+               
+                if(state.profilepicture){
+                    axios.delete(`${config.SERVER_URL}/upload/files/${ctx.user.linkfunnels[0].profilepicture.id}`).then(res=> console.log(res))
+                     const formData = new FormData()
+                    formData.append('files', state.profilepicture);
+                    formData.append('ref', 'linkfunnel');
+                    formData.append('refId', res.data.id);
+                    formData.append('field', 'profilepicture');
+                    axios.post(`${config.SERVER_URL}/upload/`,formData).then(res => {
 
-                axios.post(`${config.SERVER_URL}/upload/`,formData
-                ).then(res => {
-                    ctx.setLoad(false);
-                    ctx.setModal({open: true, title: 'Congratulations, You Are Successful in Updating Link Booster', function: ()=>{ window.location.replace("/pcm/dashboard/link");}})
+                        ctx.setLoad(false);
+                        ctx.setModal({open: true, title: 'Congratulations, You Are Successful in Updating Link Booster', function: ()=>{ window.location.replace("/dashboard/link");}})
+                        
+                    })
+                   
+      
+                  //UPLOADING Profile IMAGE IN SERVER
                     
-                })
+                // Handle success.
+                // console.log('Well done!',response);
+                // console.log('User profile', response.data.user);
+                // console.log('User token', response.data.jwt);
+                }
+               
                 ctx.setLoad(false);
-                ctx.setModal({open: true, title: 'Congratulations, You Are Successful in Updating Link Booster', function: ()=>{ window.location.replace("/pcm/dashboard/link");}})
-  
-              //UPLOADING Profile IMAGE IN SERVER
-                
-            // Handle success.
-            // console.log('Well done!',response);
-            // console.log('User profile', response.data.user);
-            // console.log('User token', response.data.jwt);
+                ctx.setModal({open: true, title: 'Congratulations, You Are Successful in Updating Link Booster', function: ()=>{ window.location.replace("/dashboard/link");}})
+               
             
         })
         .catch(error => {
@@ -129,13 +134,13 @@ export default function LinkEdit () {
     
 
     React.useEffect(() => {
-      
+            ctx.authenticate();
             try{
                 if(!ctx.user.linkfunnels[0]){
                     setLink(true)
                     console.log(ctx.user.linkfunnels)
                 }else{
-                    console.log(ctx.user.linkfunnels[0].profilepicture)
+                    console.log(ctx.user)
                     dispatch({type:"ONCHANGE", field: "firstname", payload: ctx.user.linkfunnels[0].firstname});
                     dispatch({type:"ONCHANGE", field: "lastname", payload: ctx.user.linkfunnels[0].lastname});
                     dispatch({type:"ONCHANGE", field: "email", payload: ctx.user.linkfunnels[0].email});
@@ -156,6 +161,15 @@ export default function LinkEdit () {
         
       },[ctx.user.linkfunnels]);
 
+      if(!ctx.stateAuthenticated){
+        return (
+            <div >
+                <Login/>
+            </div>
+        )
+    }
+
+
 
         return (<div className={classes.root} >
             <Head>
@@ -164,7 +178,7 @@ export default function LinkEdit () {
             </Head>
             <PoliciesComponent/>
             <div className={classes.backBox} >
-                <Link href='/pcm/dashboard/link'>
+                <Link href='/dashboard/link'>
                     <IconButton>
                         <ArrowBackIcon className={classes.back} />
                     </IconButton>

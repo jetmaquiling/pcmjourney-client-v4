@@ -16,7 +16,7 @@ import axios from 'axios';
 import config from '@/config/configuration.json'
 import { SuccessModalComponent } from '@/components/dialogs/success';
 import { useRouter } from 'next/router'
-
+import Login from '../../../login/index'
 
 const initialState = {
     firstname: '',
@@ -56,7 +56,7 @@ export default function LinkCreate () {
 
     React.useEffect(() => {
         if(!ctx.getCookie("isLoggedIn")){
-            router.push("/pcm/login")
+            router.push("/login")
         }
 
 
@@ -135,12 +135,12 @@ export default function LinkCreate () {
                         axios.post(`${config.SERVER_URL}/upload/`,formData
                         ).then(res => {
                           ctx.setLoad(false);
-                          ctx.setModal({open: true, title: 'Congratulations, You Are Successful in making a Link Booster', function: ()=>{ window.location.replace("/pcm/dashboard/link");}})
+                          ctx.setModal({open: true, title: 'Congratulations, You Are Successful in making a Link Booster', function: ()=>{ window.location.replace("/dashboard/link");}})
                           
                         })
                     }
                     ctx.setLoad(false);
-                    ctx.setModal({open: true, title: 'Congratulations, You Are Successful in making a Link Booster', function: ()=>{ window.location.replace("/pcm/dashboard/link");}})
+                    ctx.setModal({open: true, title: 'Congratulations, You Are Successful in making a Link Booster', function: ()=>{ window.location.replace("/dashboard/link");}})
   
               //UPLOADING Profile IMAGE IN SERVER
                 
@@ -160,7 +160,13 @@ export default function LinkCreate () {
   
     }
     
-   
+    if(!ctx.stateAuthenticated){
+        return (
+            <div >
+                <Login/>
+            </div>
+        )
+    }
   
    
     return (
@@ -168,7 +174,7 @@ export default function LinkCreate () {
             <SuccessModalComponent/>
             <PoliciesComponent/>
             <div className={classes.backBox} >
-                <Link href='/pcm/dashboard'>
+                <Link href='/dashboard'>
                     <IconButton>
                         <ArrowBackIcon className={classes.back} />
                     </IconButton>

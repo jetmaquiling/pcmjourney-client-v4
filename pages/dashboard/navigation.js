@@ -16,6 +16,8 @@ import DriveEtaIcon from '@material-ui/icons/DriveEta';
 import Link from 'next/link';
 import AlbumIcon from '@material-ui/icons/Album';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import Image from 'next/image';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,13 +36,18 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     noteBox:{
-        margin: '0px 0px 20px 0px',
+        margin: '0px 0px 0px 0px',
     },
     button:{
+        padding: "10px",
+        borderRadius: '0px',
+        borderBottomLeftRadius: '10px',
+        borderBottomRightRadius:'10px',
         width: '100%',
         background: "linear-gradient(to right, #e43a15, #e65245)"
     },
     buttonitembox:{
+        
         width: '100%',
         display: 'flex',
         alignItems: 'center',
@@ -53,12 +60,53 @@ const useStyles = makeStyles((theme) => ({
         margin: '0px 10px 0px 10px',
         color: theme.palette.secondary.light,
         [theme.breakpoints.down('xs')]: {
-            fontSize: '15px'
+            fontSize: '20px',
+            fontWeight: 'bold'
         },
     },
     arrowButton:{
         color: theme.palette.secondary.light
     },
+    mainBox:{
+        overflow:'hidden',
+        width: "100%",
+        maxHeight: '200px',
+        display: 'flex', 
+        justifyContent: 'space-between',
+        backgroundColor: '#fff', 
+        boxShadow: '0px 0px 15px #888888', 
+        borderRadius: '5px',
+        [theme.breakpoints.down('xs')]: {
+            maxHeight: '120px',
+        },
+    },
+    linkButton:{
+        fontWeight: 'bold',
+        color: "#e43a15",
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '14px',
+        },
+    },
+    textDescription:{
+        fontFamily: 'Arial',
+        fontSize: '15px',
+        
+        [theme.breakpoints.down('xs')]: {
+            fontSize: '10px',
+            lineHeight: "10px",
+        },
+    },
+    textBox:{
+        width: "60%",
+        padding: '20px',
+        overflow:'hidden',
+        display: 'flex',
+        flexDirection: "column",
+        justifyContent: 'space-between',
+        [theme.breakpoints.down('xs')]: {
+            padding: '10px',
+        },
+    }
 
 
 }));
@@ -74,21 +122,27 @@ export default function Navigation() {
 
         <Grid item md={6} className={classes.rootItem}>
             <div className={classes.noteBox}  >
-                <Typography variant="body1" >PCM Journey Online Class:</Typography>
-                <Typography variant="body2" >Your mindset, your belief system, is a limit on your success in business. When you read business biographies (and other biographies) you can infect yourself with empowered beliefs. You can pick up the beliefs that drove them to see things that were invisible to others. You can invariably pick up the traits that allow them to succeed, things like grit, determination, persistence, and resourcefulness.</Typography>
+                <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
+                    <FiberManualRecordIcon color='primary' fontSize='small' />
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>PCM Journey Online Class</Typography>
+                </div>
+                
+                <div className={classes.mainBox} >
+                    <div  className={classes.textBox} >   
+                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
+                        <Link href="/countdown"><a><Typography className={classes.linkButton}>Enter Class Now </Typography></a></Link>
+                    </div>
+                    <div style={{width: '40%', display: 'flex'}}>
+                        <Image alt="Class Link"  src={'/Images/classlink.JPG'}  width={300}  height={280}/>
+                    </div>
+                    
+
+                    
+                </div>
+                
             </div>
 
-            <Link href="/pcm/countdown">
-                <Button variant="contained" className={classes.button} >
-                    <div className={classes.buttonitembox}>
-                        <div style={{display: 'flex',alignItems: 'center',}}>
-                        <LinkIcon className={classes.iconButton} />
-                        <Typography className={classes.textButton} variant="body1" >Get Online Class Link</Typography>
-                        </div>
-                        <ArrowForwardIosIcon className={classes.arrowButton} />
-                    </div>
-                </Button>
-            </Link>
+            
             
         </Grid>
         
@@ -96,57 +150,50 @@ export default function Navigation() {
         
         <Grid item md={6} className={classes.rootItem}>
             <div className={classes.noteBox}  >
-                <Typography variant="body1" >Watch PCM Videos:</Typography>
-                <Typography variant="body2" >The main purpose of a PCM recorded video is to inspire Viewers . These videos are not meant to train employees or deliver information. Instead, they are carefully designed to inspire listeners to develop a sense of greater loyalty to the organization & renew their commitment to excellence.</Typography>
-            </div>
-            <Link href="/pcm/dashboard/recordings">
-                <Button variant="contained" className={classes.button}  >
-                    <div className={classes.buttonitembox}>
-                        <div style={{display: 'flex',alignItems: 'center',}}>
-                        <AlbumIcon className={classes.iconButton} />
-                        <Typography className={classes.textButton} variant="body1" >Watch PCM Videos</Typography>
-                        </div>
-                        <ArrowForwardIosIcon className={classes.arrowButton} />
+                <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
+                    <FiberManualRecordIcon color='primary' fontSize='small' />
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>Watch Class Recordings</Typography>
+                </div>
+                
+                <div className={classes.mainBox} >
+                    <div  className={classes.textBox} >   
+                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
+                        <Link href="/dashboard/recordings"><a><Typography className={classes.linkButton}>Watch Recordings</Typography></a></Link>
                     </div>
-                </Button>
-            </Link>
+                    <div style={{width: '40%', display: 'flex'}}>
+                        <Image alt="Class Link"  src={'/Images/watch.JPG'}  width={300}  height={280}/>
+                    </div>
+                    
+
+                    
+                </div>
+                
+            </div>
         </Grid>
+
+        
 
         <Grid item md={6} className={classes.rootItem}>
             <div className={classes.noteBox}  >
-                <Typography variant="body1" >Every Journey Has A Story:</Typography>
-                <Typography variant="body2" > Good inspirational stories and quotes are a great way to uplift our soul fill it with hope and optimism. Stories are a powerful tool to touch our heart. A good inspirational story motivates us to keep fighting for our heart's desires and dream. An inspirational story can be happy, sad, motivating, or even depressing. The inspirational stories are key to building our character and make us what we are today.</Typography>
-            </div>
-
-            <Link href="/blogs">
-                <Button variant="contained" className={classes.button}  >
-                    <div className={classes.buttonitembox}>
-                        <div style={{display: 'flex',alignItems: 'center',}}>
-                        <LocalLibraryIcon className={classes.iconButton} />
-                        <Typography className={classes.textButton} variant="body1" >PCM Journey Blogs</Typography>
-                        </div>
-                        <ArrowForwardIosIcon className={classes.arrowButton} />
+                <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
+                    <FiberManualRecordIcon color='primary' fontSize='small' />
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>My Prospect List</Typography>
+                </div>
+                
+                <div className={classes.mainBox} >
+                    <div  className={classes.textBox} >   
+                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
+                        <Link href="/dashboard/prospectlist"><a><Typography className={classes.linkButton}>Check Prospects</Typography></a></Link>
                     </div>
-                </Button>
-            </Link>
-        </Grid>
-
-        <Grid item md={6} className={classes.rootItem}>
-            <div className={classes.noteBox}  >
-                <Typography variant="body1" >Prospect List:</Typography>
-                <Typography variant="body2" >Having a list of prospects is important in lead generation and translates to profits in businesses in the long-term. Think about it- you might be the most skilled salesperson at your company, but if you’re reaching out to the wrong people, your sales skills will have no impact on their desire to purchase your product. Your success is dependent on the quality of your sales prospect lists. </Typography>
-            </div>
-            <Link href="/pcm/dashboard/prospectlist">
-                <Button variant="contained" className={classes.button}  >
-                    <div className={classes.buttonitembox}>
-                        <div style={{display: 'flex',alignItems: 'center',}}>
-                        <FormatListNumberedIcon className={classes.iconButton} />
-                        <Typography className={classes.textButton} variant="body1" >Prospect List</Typography>
-                        </div>
-                        <ArrowForwardIosIcon className={classes.arrowButton} />
+                    <div style={{width: '40%', display: 'flex'}}>
+                        <Image alt="Class Link"  src={'/Images/prospectlist.JPG'}  width={300}  height={280}/>
                     </div>
-                </Button>
-            </Link>
+                    
+
+                    
+                </div>
+                
+            </div>
         </Grid>
 
         {/* <Grid item md={6} className={classes.rootItem}>
@@ -241,48 +288,54 @@ export default function Navigation() {
         </Grid>
 
  */}
-            <Grid item md={6} className={classes.rootItem}>
-                <div className={classes.noteBox}  >
-                    <Typography variant="body1" >Link Booster :</Typography>
-                    <Typography variant="body2" > Understanding the concept of sales funnels is important because it's a useful model for visualizing the customer journey from initial awareness all the way through conversion. The sales funnel provides a useful framework through which you can analyze your business and identify areas for improvement.</Typography>
+        <Grid item md={6} className={classes.rootItem}>
+            <div className={classes.noteBox}  >
+                <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
+                    <FiberManualRecordIcon color='primary' fontSize='small' />
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>My Link Booster</Typography>
                 </div>
                 
-                <Link href="/pcm/dashboard/link">
-                    <Button variant="contained" className={classes.button}  >
-                        <div className={classes.buttonitembox}>
-                            <div style={{display: 'flex',alignItems: 'center',}}>
-                            <TrendingUpIcon className={classes.iconButton} />
-                            <Typography className={classes.textButton} variant="body1" >Link Booster</Typography>
-                            </div>
-                            <ArrowForwardIosIcon className={classes.arrowButton} />
-                        </div>
-                    </Button>
-                </Link>
-            </Grid>
-        
-            <Grid item md={6} className={classes.rootItem}>
-            
-                <div className={classes.noteBox}  >
-                    <Typography variant="body1" >Contact Us:</Typography>
-                    <Typography variant="body2" > Are you a user with questions about PCM Journey? We’re ready to help.The more we help, the happier we feel. Volunteering increases self-confidence. You are doing good for us and the community, which provides a natural sense of accomplishment. Your role as a PCM Journey participant also give us a sense of pride and honor.</Typography>
+                <div className={classes.mainBox} >
+                    <div  className={classes.textBox} >   
+                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
+                        <Link href="/dashboard/link"><a><Typography className={classes.linkButton}>Start Invite </Typography></a></Link>
+                    </div>
+                    <div style={{width: '40%', display: 'flex'}}>
+                        <Image alt="Class Link"  src={'/Images/booster.JPG'}  width={300}  height={280}/>
+                    </div>
+                    
+
+                    
                 </div>
                 
-                <Link href="/support">
-                    <Button variant="contained" className={classes.button}  >
-                        <div className={classes.buttonitembox}>
-                            <div style={{display: 'flex',alignItems: 'center',}}>
-                            <ContactMailIcon className={classes.iconButton} />
-                            <Typography className={classes.textButton} variant="body1" >Contact Us</Typography>
-                            </div>
-                            <ArrowForwardIosIcon className={classes.arrowButton} />
-                        </div>
-                    </Button>
-                </Link>
-            </Grid>
+            </div>   
+        </Grid>
         
+        <Grid item md={6} className={classes.rootItem}>
+            <div className={classes.noteBox}  >
+                <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
+                    <FiberManualRecordIcon color='primary' fontSize='small' />
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>Ask Technical Help </Typography>
+                </div>
+                
+                <div className={classes.mainBox} >
+                    <div  className={classes.textBox} >   
+                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
+                        <Link href="/support"><a><Typography className={classes.linkButton}>Contact Support Team</Typography></a></Link>
+                    </div>
+                    <div style={{width: '40%', display: 'flex'}}>
+                        <Image alt="Class Link"  src={'/Images/contact.JPG'}  width={300}  height={280}/>
+                    </div>
+                    
+
+                    
+                </div>
+                
+            </div>
+        </Grid>
 
 
-
+       
 
 
 

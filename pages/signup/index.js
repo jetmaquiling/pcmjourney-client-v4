@@ -98,7 +98,7 @@ export default function Signup () {
             <SuccessModalComponent/>
             <PoliciesComponent/>
             <div className={classes.backBox} >
-                <Link href='/pcm'>
+                <Link href='/'>
                     <IconButton>
                         <ArrowBackIcon className={classes.back} />
                     </IconButton>

@@ -42,21 +42,18 @@ export default function Login () {
         scrollToRef(myRef)
     }, [])
 
-    React.useEffect(() => {
-        if (ctx.getCookie('isLoggedIn')) {
-          router.push('/pcm/dashboard')
-        }
-      })
-    
- 
-    return (
+    if(ctx.stateAuthenticated){
+        return <div  ref={myRef} ><h1>Proceed To Login</h1></div>
+    }else{
+
+        return (
             <div className={classes.root} ref={myRef}>
                 <Head>
                     <title>Log In PCM Journey Online Class Account</title>
                 </Head>
                 <Header1/>
                 <div className={classes.backBox} >
-                    <Link href='/pcm'>
+                    <Link href='/'>
                         <IconButton>
                             <ArrowBackIcon className={classes.back} />
                         </IconButton>
@@ -147,4 +144,8 @@ export default function Login () {
                 <Footer1/>
             </div>
         );
+
+    }
+    
+    
 }

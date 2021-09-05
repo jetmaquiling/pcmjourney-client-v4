@@ -20,6 +20,7 @@ import LinkCard from '@/components/cards/link';
 import  Button  from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 
+import Login from '../../login/index';
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
 
@@ -34,20 +35,18 @@ export default function LinkDashboard () {
 
 
     React.useEffect(() => {
-        if(!ctx.getCookie('isLoggedIn')){
-            router.push("/pcm/login")
-        }else{
-            try{
-                if(ctx.user.linkfunnels.length === 0 && ctx.user.linkfunnels[0].slug){
-                    setLink(true)
-                }else{
-                    setCode(ctx.user.linkfunnels[0].slug)
-                    setLink(false)
-                }
-            }catch{
+        console.log(ctx.user)
+        try{
+            if(ctx.user.linkfunnels.length === 0 && ctx.user.linkfunnels[0].slug){
                 setLink(true)
+            }else{
+                setCode(ctx.user.linkfunnels[0].slug)
+                setLink(false)
             }
+        }catch{
+            setLink(true)
         }
+        
         
       },[setLink,ctx]);
     
@@ -63,6 +62,16 @@ export default function LinkDashboard () {
         )
     }
 
+
+
+    if(!ctx.stateAuthenticated){
+        return (
+            <div>
+                <Login/>
+            </div>
+        )
+    }
+
     return (
             <div className={classes.root} >
                 <Head>
@@ -72,13 +81,13 @@ export default function LinkDashboard () {
 
                 <Header1/>
                 <div className={classes.backBox} >
-                    <Link href='/pcm/dashboard'>
+                    <Link href='/dashboard'>
                         <IconButton>
                             <ArrowBackIcon className={classes.back} />
                         </IconButton>
                     </Link>
                 </div>
-                <Link href="/pcm/dashboard/link/edit">
+                <Link href="/dashboard/link/edit">
                     <Button variant="contained"  style={{backgroundColor: '#DB4437', marginBottom: '30px'}} >
                         <EditIcon color="secondary"/>
                         <Typography variant="body2" style={{fontWeight: 700, lineHeight: '22px', color:'#fff',margin: '0px 10px'}}>

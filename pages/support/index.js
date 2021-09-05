@@ -162,7 +162,7 @@ export default function Support() {
 
             <div className={classes.box2}>
                 <div style={{display: 'flex', justifyContent: 'flex-start'}} >
-                    <Link href='/pcm'>
+                    <Link href='/'>
                         <IconButton>
                             <ArrowBackIcon className={classes.back} />
                         </IconButton>

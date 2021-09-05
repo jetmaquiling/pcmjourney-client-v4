@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import {AuthContext} from '@/context/context';
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-
+import Login from '../login/index'
 
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
@@ -20,14 +20,12 @@ export default function Dashboard () {
 
 
     React.useEffect(() => {
-        if(!ctx.getCookie('isLoggedIn')){
-            router.push("/pcm/login")
-        }
+        
     
         scrollToRef(myRef);
         try{
             if(ctx.user.linkfunnels.length === 0){
-                ctx.setModal({open: true, message: "You don't have a Link Booster account yet? Click proceed to create now!", function: ()=>{router.push('/pcm/dashboard/link/create')}})
+                ctx.setModal({open: true, message: "You don't have a Link Booster account yet? Click proceed to create now!", function: ()=>{router.push('/dashboard/link/create')}})
             }
         }catch{
             
@@ -36,7 +34,13 @@ export default function Dashboard () {
 
 
    
-    
+    if(!ctx.stateAuthenticated){
+        return (
+            <div ref={myRef}>
+                <Login/>
+            </div>
+        )
+    }
     return (
             <div  ref={myRef} >
                  <Head>
@@ -54,5 +58,7 @@ export default function Dashboard () {
                 <Footer1/>
             </div>
         );
+    
+    
     
 }

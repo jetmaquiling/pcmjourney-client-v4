@@ -75,12 +75,12 @@ export default function Footer1() {
                     for PCM Journey Online Class
                     
                 </Typography>
-                <Link href='/pcm/backlinks' >
+                <Link href='/backlinks' >
                     <Typography variant="caption">
                         Resources Used Are Found Here
                     </Typography>
                 </Link>
-                <Link href='/pcm/termsandpolicies' >
+                <Link href='/termsandpolicies' >
                     <Typography variant="caption">
                         Terms And Policies
                     </Typography>

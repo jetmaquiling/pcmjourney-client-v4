@@ -18,7 +18,7 @@ import config from '@/config/configuration';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-
+import Login from '../../login/index';
 import Head from 'next/head'
 import {AuthContext} from '@/context/context';
 import { useRouter } from 'next/router'
@@ -74,17 +74,18 @@ export default function Watch() {
             const {data} = await axios.get(`${config.SERVER_URL}/watches?_sort=date:ASC`);
               setVideo(data)
         }
-        if(!ctx.loggedIn){
-            router.push("/pcm/login")
-        }else{
-            getVideo()
-        }
+        getVideo()
        
     }, [])
 
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-      };
+
+    if(!ctx.stateAuthenticated){
+        return (
+            <div ref={myRef}>
+                <Login/>
+            </div>
+        )
+    }
 
     return (
         <div className={classes.root}>
@@ -92,7 +93,7 @@ export default function Watch() {
                 <title>PCM ONLINE RECORDINGS</title>
             </Head>
             <div className={classes.backBox} >
-                <Link href='/pcm/dashboard'>
+                <Link href='/dashboard'>
                     <IconButton>
                         <ArrowBackIcon className={classes.back} />
                     </IconButton>

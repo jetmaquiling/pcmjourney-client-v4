@@ -105,12 +105,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'center',
       flexDirection: 'column',
-      alignItems: 'end',
+      alignItems: 'start',
       
     },
   },
   profileBox:{
     textAlign: 'center',
+    marginLeft: '5px'
   },
   closeBox:{
     textAlign: 'right'
@@ -139,6 +140,7 @@ const useStyles = makeStyles((theme) => ({
 
 
   profilePictureSlide:{
+    borderRadius: '5px',
     width: '100px',
     height: '100px',
   }
@@ -158,12 +160,12 @@ export default function Header1 (){
   };
   
   React.useEffect(() => {
-    if (ctx.loggedIn){
+    if (ctx.stateAuthenticated){
       setLog(true)
     }else{
       setLog(false)
     }
-  },[ctx.loggedIn])
+  },[ctx.stateAuthenticated])
 
 
 
@@ -175,7 +177,7 @@ export default function Header1 (){
           <Toolbar className={classes.flexBox}  style={{display: (log && 'none') }} >
 
             <div >
-              <Link href="/pcm">
+              <Link href="">
                 <a>
                   <Image alt="Logo" src={PCMBlack} width={70} height={70}  className={classes.logoImage}/>
                 </a>
@@ -188,7 +190,7 @@ export default function Header1 (){
                       Blogs
                   </Button>
               </Link>
-              <Link href='/pcm/countdown'>
+              <Link href='/countdown'>
                   <Button  className={classes.appButton} >
                       About
                   </Button>
@@ -198,12 +200,12 @@ export default function Header1 (){
                       Contact
                   </Button>
               </Link>
-              <Link href='/pcm/login'>
+              <Link href='/login'>
                   <Button  className={classes.appButton} >
                       Log In
                   </Button>
               </Link>
-              <Link href='/pcm/signup'>
+              <Link href='/signup'>
                   <Button variant="contained" color="primary" className={classes.appButton1}>
                       Sign Up
                   </Button>
@@ -220,8 +222,8 @@ export default function Header1 (){
 
             <div className={classes.profile} >
               <div className={classes.profileBox} >
-                <IconButton >
-                  <Avatar style={{width:'40px'}} className={classes.profilePicture} src={ctx.user.ProfilePicture}/>
+                <IconButton style={{padding:'5px'}}>
+                  <Avatar style={{width:'40px', borderRadius: '5px'}} className={classes.profilePicture} src={ctx.user.ProfilePicture}/>
                 </IconButton>
               </div>
               <div className={classes.profileName} >
@@ -269,7 +271,7 @@ export default function Header1 (){
                     </div>
                     <List className={classes.drawer}>
                       <Divider /> 
-                      <Link href='/pcm/dashboard'>
+                      <Link href='/dashboard'>
                           <ListItem button >
                                 <ListItemIcon><DashboardIcon color="primary" /></ListItemIcon>
                                 <ListItemText primary={"DashBoard"} /> 
@@ -277,7 +279,7 @@ export default function Header1 (){
                           </ListItem>
                       </Link>
 
-                      <Link href='/pcm/countdown'>
+                      <Link href='/countdown'>
                         <ListItem button >
                               <ListItemIcon><DirectionsWalkIcon color="primary" /></ListItemIcon>
                               <ListItemText primary={"PCM Online Link"} /> 
@@ -286,7 +288,7 @@ export default function Header1 (){
                       </Link>
 
 
-                      <Link href='/pcm/dashboard/link'>
+                      <Link href='/dashboard/link'>
                         <ListItem button >
                               <ListItemIcon><TrendingUpIcon color="primary" /></ListItemIcon>
                               <ListItemText primary={"Link Booster"} /> 
@@ -294,7 +296,7 @@ export default function Header1 (){
                         </ListItem>
                       </Link>
 
-                      <Link href='/pcm/dashboard/prospectlist'>
+                      <Link href='/dashboard/prospectlist'>
                         <ListItem button >
                               <ListItemIcon><FormatListNumberedIcon color="primary" /></ListItemIcon>
                               <ListItemText primary={"My Prospects"} /> 
@@ -303,7 +305,7 @@ export default function Header1 (){
                       </Link>
 
                       
-                      <Link href='/pcm/dashboard/recordings'>
+                      <Link href='/dashboard/recordings'>
                         <ListItem button >
                               <ListItemIcon><AlbumIcon color="primary" /></ListItemIcon>
                               <ListItemText primary={"PCM Recordings"} /> 
@@ -321,7 +323,7 @@ export default function Header1 (){
 
                       
 
-                      <Link href='/pcm'>
+                      <Link href='/'>
                         <ListItem button >
                               <ListItemIcon ><SettingsIcon color="primary" /></ListItemIcon>
                               <ListItemText primary={"Settings"} /> 
@@ -360,7 +362,7 @@ export default function Header1 (){
                     </div>
                     <List className={classes.drawer}>
                       <Divider /> 
-                      <Link href='/pcm'>
+                      <Link href='/'>
                           <ListItem button >
                                 <ListItemIcon><HomeIcon color="primary" /></ListItemIcon>
                                 <ListItemText primary={"Homepage"} /> 
@@ -368,7 +370,7 @@ export default function Header1 (){
                           </ListItem>
                       </Link>
 
-                      <Link href='/pcm/countdown'>
+                      <Link href='/countdown'>
                         <ListItem button >
                               <ListItemIcon><LiveHelpIcon color="primary" /></ListItemIcon>
                               <ListItemText primary={"Why PCM Journey?"} /> 
@@ -401,7 +403,7 @@ export default function Header1 (){
                         </ListItem>
                       </Link>
 
-                      <Link href='/pcm/login'>
+                      <Link href='/login'>
                         <ListItem button >
                               <ListItemIcon ><ExitToAppIcon color="primary" /></ListItemIcon>
                               <ListItemText primary={"Log In"} /> 
@@ -409,7 +411,7 @@ export default function Header1 (){
                         </ListItem>
                       </Link>
 
-                      <Link href='/pcm/signup'>
+                      <Link href='/signup'>
                         <ListItem button style={{backgroundColor: '#EC113E'}}>
                               <ListItemIcon ><HowToRegIcon color="secondary" /></ListItemIcon>
                               <ListItemText style={{color:'#fff'}}  primary={"Sign Up"} /> 

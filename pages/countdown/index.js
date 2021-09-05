@@ -91,7 +91,7 @@ export default function Countdown() {
 
                     </div>
                         {/* PLACE CONDITIONAL HERE */}
-                    <div className={classes.buttonBox1} style={{display:ctx.loggedIn && 'none'}}>
+                    <div className={classes.buttonBox1} style={{display:ctx.stateAuthenticated && 'none'}}>
                             <Link href='/pcm/signup'>
                                 <Button variant="contained" color="primary" className={classes.appButton1} >
                                     Sign Up
@@ -104,7 +104,7 @@ export default function Countdown() {
                             </Link>
                     </div>
                         {/* PLACE CONDITIONAL HERE */}
-                    <div className={classes.buttonBox2} style={{display:!ctx.loggedIn && 'none'}}>
+                    <div className={classes.buttonBox2} style={{display:!ctx.stateAuthenticated && 'none'}}>
                             <a href={ctx.events.PCMlink} >
                                 <Button variant="contained" color="secondary" className={classes.appButton2} >
                                     <Typography variant='h6' color="primary"  >  Open Zoom Meeting Now</Typography>
