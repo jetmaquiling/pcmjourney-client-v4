@@ -81,7 +81,7 @@ export default function Watch() {
 
     if(!ctx.stateAuthenticated){
         return (
-            <div ref={myRef}>
+            <div >
                 <Login/>
             </div>
         )
