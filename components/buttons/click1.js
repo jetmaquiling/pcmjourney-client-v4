@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
         
     },
     formItemButton:{
-        margin: '100px auto 20px auto', 
+        margin: '20px auto 20px auto', 
     },
   }));
 

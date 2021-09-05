@@ -39,8 +39,12 @@ import Login from '../../login/index';
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import qs from 'qs'
 
 
+import clsx from 'clsx';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -117,38 +121,50 @@ export default function ProspectList() {
     const ctx = useContext(AuthContext);
     const [success, setSuccess] = React.useState(true)
     const [form, setForm] = React.useState({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: ''});
-   
+    const [ prospects , setProspects] = React.useState([]);
+    const [search, setSearch ] = React.useState("");
 
+    
     useEffect(() => {
-       
+        ctx.authenticate()
         console.log(ctx.user)
         async function persist(jwt) { 
             //console.log("Persisting Log")
-              const {data} = await axios.get(`${config.SERVER_URL}/users/${ctx.getCookie('id')}`, {
+                const query = qs.stringify({ _where: { _and: [{ "users_permissions_user": ctx.getCookie('id') }], _or:[{"firstname": search},{"lastname": search},{"interest": search}] } });
+                const {data} = await axios.get(`${config.SERVER_URL}/prospects?${query}`, {
                 headers: { Authorization: `Bearer ${jwt}` }
                 });
-              const json = await data;
+                const json = await data;
               // setCookie('token',json.jwt,7);
               // console.log('success LogIn', data);
-              ctx.setUser(json);
-              try{
-                ctx.setUser({...json, ProfilePicture : json.ProfilePicture.url})
-              }catch(error){
-                // console.log('No Profile Picture')
-              }
+                setProspects(json)
+                // setProspects(json);
+                //   try{
+                //     ctx.setUser({...json, ProfilePicture : json.ProfilePicture.url})
+                //   }catch(error){
+                //     // console.log('No Profile Picture')
+                //   }
               
               //console.log(json)
               // console.log('success LogIn', json.user);
       
           }
-          persist(ctx.getCookie('token'));
+
+        if(search){
+        persist(ctx.getCookie('token'));
+        }else{
+        setProspects(ctx.user.prospects)  
+        }
+          
        
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [success])
 
+    
+
     async function addProspect () {
         
-        if(form.firstname.length <= 5 || form.lastname.length <= 5 ){
+        if(form.firstname.length <= 1 || form.lastname.length <= 1 ){
             return ctx.handleToaster("Atleast add The First Name and Last Name", "warning");
         }
         axios
@@ -167,6 +183,7 @@ export default function ProspectList() {
     }).then(res=>{
         setForm({firstname: '',lastname:'', contact: '',email: '', geocode:'',notification: '', interest: ''});
         setSuccess(!success)
+        setSearch("")
         ctx.setModal({open:false})
         ctx.handleToaster("Your Prospect Is added on the list","success");
     }).catch(error => {
@@ -214,8 +231,35 @@ export default function ProspectList() {
                     </IconButton>
                 </Link>
             </div>
+
+
             <div  className={classes.inputBox}>
-            <Accordion color='primary'  >
+
+                <FormControl className={clsx(classes.margin, classes.textField)} variant="filled" fullWidth>
+                    <InputLabel >Search Prospect</InputLabel>
+                    <OutlinedInput
+                        onChange={(e)=> setSearch(e.target.value)}
+                        value={search}
+                        inputProps={{
+                            autoComplete: false,
+                        }}
+                        onKeyDown={(e)=>{
+                            if (e.key === 'Enter') {
+                                setSuccess(!success)
+                              }
+                        }}
+                        fullWidth
+                        endAdornment={
+                        <InputAdornment position="end">
+                            <IconButton edge="end" onClick={()=>setSuccess(!success)}>
+                                <SearchIcon style={{fontSize:'25px'}} />
+                            </IconButton>
+                        </InputAdornment>
+                        }
+                    />
+                </FormControl>
+
+                <Accordion color='primary'  >
                 <AccordionSummary
                 expandIcon={<AddIcon  color="primary" />}
                 aria-controls="panel1a-content"
@@ -227,6 +271,7 @@ export default function ProspectList() {
                 </div>
                 
                 </AccordionSummary>
+
                 <AccordionDetails>
                     <div className={classes.contentBox}>
 
@@ -329,7 +374,7 @@ export default function ProspectList() {
             </Accordion>
             </div>
              <Grid container className={classes.box}>
-                    {ctx.user.prospects && ctx.user.prospects.map((person, index) => {
+                    {prospects && prospects.map((person, index) => {
                         let location = {};
                         if(!person.geocode == "" ){
                             location = JSON.parse(person.geocode)

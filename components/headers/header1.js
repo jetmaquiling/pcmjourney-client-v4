@@ -323,7 +323,7 @@ export default function Header1 (){
 
                       
 
-                      <Link href='/'>
+                      <Link href='/dashboard/settings'>
                         <ListItem button >
                               <ListItemIcon ><SettingsIcon color="primary" /></ListItemIcon>
                               <ListItemText primary={"Settings"} /> 
@@ -386,14 +386,7 @@ export default function Header1 (){
                         </ListItem>
                       </Link>
 
-                      <Link href='/blogs'>
-                        <ListItem button >
-                              <ListItemIcon><BookIcon color="primary" /></ListItemIcon>
-                              <ListItemText primary={"Blogs"} /> 
-                              <ArrowForwardIosIcon color="primary" style={{margin:'0px 0px 0px 30px'}} />
-                        </ListItem>
-                      </Link>
-
+  
 
                       <Link href='/about'>
                         <ListItem button >

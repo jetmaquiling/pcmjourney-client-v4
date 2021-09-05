@@ -170,13 +170,15 @@ export default function Signup () {
 
                 <Type6 label="Password" type="date" field="Password" dispatch={dispatch}  />
                 <Type6 label="Confirm Password" type="date" field="PasswordConfirm" dispatch={dispatch}  />
-                <TermsAndPolicy Agreement={state.Agreement} dispatch={dispatch} />
+                <TermsAndPolicy Agreement={state.Agreement} dispatch={dispatch}  />
+                <br/>
+                <br/>
                 <Click1 label="Proceed" action={()=> ctx.signUp(state) } />
 
         
             {/* End Of FormBox */}
             </div>
-
+            
         </div>
     )
 }

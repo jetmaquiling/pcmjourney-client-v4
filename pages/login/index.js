@@ -20,6 +20,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import HelpIcon from '@material-ui/icons/Help';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Image from 'next/image'
 
 import Header1 from '@/components/headers/header1';
 import Footer1 from '@/components/footers/footer1';
@@ -43,7 +44,18 @@ export default function Login () {
     }, [])
 
     if(ctx.stateAuthenticated){
-        return <div  ref={myRef} ><h1>Proceed To Login</h1></div>
+        return (
+            <div  ref={myRef} className={classes.proceed} >
+            
+            <div className={classes.main}>
+                    <Link href="/" ><a><Image alt="logo" src={"/Images/PCM Black.png"} height={90} width={90}/></a></Link>
+                    <Typography variant="h3" >Login Success</Typography>
+                    <Click1 label="Proceed to Dashboard" action={()=> router.push('/dashboard')} />
+            </div>
+            
+            
+            </div>
+            )
     }else{
 
         return (

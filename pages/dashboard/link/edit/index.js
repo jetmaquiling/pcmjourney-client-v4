@@ -93,8 +93,10 @@ export default function LinkEdit () {
             }).then(res => {
                
                 if(state.profilepicture){
-                    axios.delete(`${config.SERVER_URL}/upload/files/${ctx.user.linkfunnels[0].profilepicture.id}`).then(res=> console.log(res))
-                     const formData = new FormData()
+                    if(ctx.user.linkfunnels[0].profilepicture){
+                        axios.delete(`${config.SERVER_URL}/upload/files/${ctx.user.linkfunnels[0].profilepicture.id}`).then(res=> console.log(res))
+                    }
+                    const formData = new FormData()
                     formData.append('files', state.profilepicture);
                     formData.append('ref', 'linkfunnel');
                     formData.append('refId', res.data.id);
