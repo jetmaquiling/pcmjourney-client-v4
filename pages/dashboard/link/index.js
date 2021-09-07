@@ -34,7 +34,7 @@ export default function LinkDashboard () {
     const classes = useStyles();
     const ctx = React.useContext(AuthContext);
     const router = useRouter()
-    const [link, setLink] = React.useState(false);
+    const [link, setLink] = React.useState(true);
     const [search, setSearch ] = React.useState("");
     const [funnels , setFunnels] = React.useState([]);
     const [success, setSuccess] = React.useState(true)
@@ -42,7 +42,8 @@ export default function LinkDashboard () {
 
     React.useEffect(() => {
         ctx.authenticate()
-        async function persistSearch(jwt) { 
+        
+        async function persistSearch() { 
             //console.log("Persisting Log")
                 const query = qs.stringify({ _where: { _or:[{"title": search},{"author": search},{"link": search}, {"target": search},{"information": search}] } });
                 const {data} = await axios.get(`${config.SERVER_URL}/funnelpages?${query}`);
@@ -52,7 +53,7 @@ export default function LinkDashboard () {
       
           }
 
-        async function persist(jwt) { 
+        async function persist() { 
             //console.log("Persisting Log")
                 const {data} = await axios.get(`${config.SERVER_URL}/funnelpages`);
                 const json = await data;
@@ -60,6 +61,14 @@ export default function LinkDashboard () {
                 setFunnels(json)
       
           }
+
+        try{
+            if(ctx.user.linkfunnels[0].slug){
+                setLink(false)
+            }
+        }catch(error){
+            console.log(error)
+        }
 
 
         if(search){
@@ -82,7 +91,7 @@ export default function LinkDashboard () {
         )
     }
 
-    if(ctx.user.linkfunnels.length === 0 && ctx.user.linkfunnels[0].slug){
+    if(link){
         return ( 
             <div>
                 <Head>

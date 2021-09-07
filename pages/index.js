@@ -39,12 +39,12 @@ export default function LandingPage () {
                   <Typography variant="h1" className={[classes.h1 , animation.animateTitle3].join(' ')} >JOURNEY</Typography>
               </div>
               <div className={classes.buttonBox} >
-                  <Link href='/pcm/signup'>
+                  <Link href='/signup'>
                       <Button variant="contained" color="primary" className={classes.appButton} >
                            <Typography variant="body1">SIGN UP</Typography>
                       </Button>
                   </Link>
-                  <Link href='/pcm/login'>
+                  <Link href='/login'>
                       <Button variant="outlined" color="primary" className={classes.appButton} >
                           <Typography variant="body1">LOG IN</Typography>
                       </Button>
