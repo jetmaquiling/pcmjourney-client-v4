@@ -76,7 +76,7 @@ export default function LinkCreate () {
         dispatch({
             type:"ONCHANGE",
             field: "geocode",
-            payload: `{latitude:${position.coords.latitude}, longitude:${position.coords.longitude}}`
+            payload: `{"latitude":${position.coords.latitude}, "longitude":${position.coords.longitude}}`
         })
     }
 

@@ -93,12 +93,12 @@ const useStyles = makeStyles((theme) => ({
         
         [theme.breakpoints.down('xs')]: {
             fontSize: '12px',
-            lineHeight: "10px",
+            lineHeight: "15px",
         },
     },
     textBox:{
-        width: "60%",
-        padding: '20px',
+        width: "55%",
+        padding: '15px',
         overflow:'hidden',
         display: 'flex',
         flexDirection: "column",
@@ -124,15 +124,15 @@ export default function Navigation() {
             <div className={classes.noteBox}  >
                 <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
                     <FiberManualRecordIcon color='primary' fontSize='small' />
-                    <Typography variant="body1" style={{marginLeft: "10px" }}>PCM Journey Online Class</Typography>
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>PCM Journey Class</Typography>
                 </div>
                 
                 <div className={classes.mainBox} >
                     <div  className={classes.textBox} >   
-                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
+                        <Typography className={classes.textDescription}>Attend the PCM Journey Online Class during Monday 8pm</Typography>
                         <Link href="/countdown"><a><Typography className={classes.linkButton}>Enter Class Now </Typography></a></Link>
                     </div>
-                    <div style={{width: '40%', display: 'flex'}}>
+                    <div style={{width: '45%', display: 'flex'}}>
                         <Image alt="Class Link"  src={'/Images/classlink.JPG'}  width={300}  height={280}/>
                     </div>
                     
@@ -152,15 +152,15 @@ export default function Navigation() {
             <div className={classes.noteBox}  >
                 <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
                     <FiberManualRecordIcon color='primary' fontSize='small' />
-                    <Typography variant="body1" style={{marginLeft: "10px" }}>Watch Class Recordings</Typography>
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>Class Recordings</Typography>
                 </div>
                 
                 <div className={classes.mainBox} >
                     <div  className={classes.textBox} >   
-                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
-                        <Link href="/dashboard/recordings"><a><Typography className={classes.linkButton}>Watch Recordings</Typography></a></Link>
+                        <Typography className={classes.textDescription}>Were you late in class? Don't worry we got you covered.</Typography>
+                        <Link href="/dashboard/recordings"><a><Typography className={classes.linkButton}>Watch PCM Class</Typography></a></Link>
                     </div>
-                    <div style={{width: '40%', display: 'flex'}}>
+                    <div style={{width: '45%', display: 'flex'}}>
                         <Image alt="Class Link"  src={'/Images/watch.JPG'}  width={300}  height={280}/>
                     </div>
                     
@@ -177,15 +177,15 @@ export default function Navigation() {
             <div className={classes.noteBox}  >
                 <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
                     <FiberManualRecordIcon color='primary' fontSize='small' />
-                    <Typography variant="body1" style={{marginLeft: "10px" }}>My Prospect List</Typography>
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>Prospect List</Typography>
                 </div>
                 
                 <div className={classes.mainBox} >
                     <div  className={classes.textBox} >   
-                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
-                        <Link href="/dashboard/prospectlist"><a><Typography className={classes.linkButton}>Check Prospects</Typography></a></Link>
+                        <Typography className={classes.textDescription}>Having a list of prospects is important in lead generation and translates to profits.</Typography>
+                        <Link href="/dashboard/prospectlist"><a><Typography className={classes.linkButton}>View Prospects</Typography></a></Link>
                     </div>
-                    <div style={{width: '40%', display: 'flex'}}>
+                    <div style={{width: '45%', display: 'flex'}}>
                         <Image alt="Class Link"  src={'/Images/prospectlist.JPG'}  width={300}  height={280}/>
                     </div>
                     
@@ -292,15 +292,15 @@ export default function Navigation() {
             <div className={classes.noteBox}  >
                 <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
                     <FiberManualRecordIcon color='primary' fontSize='small' />
-                    <Typography variant="body1" style={{marginLeft: "10px" }}>My Link Booster</Typography>
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>Link Booster</Typography>
                 </div>
                 
                 <div className={classes.mainBox} >
                     <div  className={classes.textBox} >   
-                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
-                        <Link href="/dashboard/link"><a><Typography className={classes.linkButton}>Start Invite </Typography></a></Link>
+                        <Typography className={classes.textDescription}>Boost your business with link booster technology!</Typography>
+                        <Link href="/dashboard/link"><a><Typography className={classes.linkButton}>Start Inviting </Typography></a></Link>
                     </div>
-                    <div style={{width: '40%', display: 'flex'}}>
+                    <div style={{width: '45%', display: 'flex'}}>
                         <Image alt="Class Link"  src={'/Images/booster.JPG'}  width={300}  height={280}/>
                     </div>
                     
@@ -315,16 +315,39 @@ export default function Navigation() {
             <div className={classes.noteBox}  >
                 <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
                     <FiberManualRecordIcon color='primary' fontSize='small' />
-                    <Typography variant="body1" style={{marginLeft: "10px" }}>Ask Technical Help </Typography>
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>Contact Us</Typography>
                 </div>
                 
                 <div className={classes.mainBox} >
                     <div  className={classes.textBox} >   
-                        <Typography className={classes.textDescription}>Lorem Ipsum is simply  typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</Typography>
-                        <Link href="/support"><a><Typography className={classes.linkButton}>Contact Support Team</Typography></a></Link>
+                        <Typography className={classes.textDescription}>We are here to help, just leave us a message, and we'll get back to you.</Typography>
+                        <Link href="/support"><a><Typography className={classes.linkButton}>Request Help</Typography></a></Link>
                     </div>
-                    <div style={{width: '40%', display: 'flex'}}>
+                    <div style={{width: '45%', display: 'flex'}}>
                         <Image alt="Class Link"  src={'/Images/contact.JPG'}  width={300}  height={280}/>
+                    </div>
+                    
+
+                    
+                </div>
+                
+            </div>
+        </Grid>
+
+        <Grid item md={6} className={classes.rootItem}>
+            <div className={classes.noteBox}  >
+                <div style={{display: "flex", alignItems: 'center' , marginBottom: '20px'}}>
+                    <FiberManualRecordIcon color='primary' fontSize='small' />
+                    <Typography variant="body1" style={{marginLeft: "10px" }}>My Settings</Typography>
+                </div>
+                
+                <div className={classes.mainBox} >
+                    <div  className={classes.textBox} >   
+                        <Typography className={classes.textDescription}>Change your Accounbt settings, Link Booster Settings, etc...</Typography>
+                        <Link href="/dashboard/settings"><a><Typography className={classes.linkButton}>Change Settings</Typography></a></Link>
+                    </div>
+                    <div style={{width: '45%', display: 'flex'}}>
+                        <Image alt="Class Link"  src={'/Images/settings.JPG'}  width={300}  height={280}/>
                     </div>
                     
 

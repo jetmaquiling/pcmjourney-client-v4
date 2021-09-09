@@ -62,7 +62,7 @@ function AuthContextProvider(props) {
     const [live, setLive] = React.useState(false);
     const [stateAuthenticated, setStateAuthenticated] = React.useState(false);
     const [cookieAuthenticated, setCookieAuthenticated] = React.useState(false);
-    const [loading, setLoading] = React.useState(false);
+    const [loading, setLoading] = React.useState(true);
     const [serverConnection, setServerConnection] = React.useState(true);
     //LOG IN PERSIST
     const router = useRouter()
